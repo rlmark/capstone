@@ -1,5 +1,50 @@
 <h1>Welcome Index</h1>
 
 <div id="test recording">
-  <h2>This is a test of recording</h2>
+  <h2 id="startRecording">Click here to test recording</h2>
+  <input type="textarea" name="transcript" value="">
 </div>
+
+<style>
+input {
+  width: 80%;
+  height: 200px;
+}
+</style>
+
+<script>
+if (!('webkitSpeechRecognition' in window)) {
+  upgrade();
+} else {
+  console.log("Upgrade not needed.")
+  var recognition = new webkitSpeechRecognition();
+  var recognizing = false;
+  var final_transcript = '';
+
+  // Sets the default to 5 mins unbroken recording
+  recognition.continuous = true;
+  // Allows user to see interim transcription results
+  recognition.interimResults = true;
+
+  // Prompts user to allow mic, starts the actual recording
+  $('#startRecording').click(function(){
+    recognition.start()
+  });
+
+  // Fires when recognition.start is called
+  recognition.onstart = function() {
+    console.log("I'm starting.");
+    recognizing = true;
+  }
+
+  // Generates results
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    console.log(event.resultIndex);
+    console.log(event.results[event.resultIndex][0].transcript)
+  }
+
+
+
+}
+</script>
