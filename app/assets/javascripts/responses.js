@@ -4,7 +4,7 @@
 
 $( document ).ready(function() {
   if (!('webkitSpeechRecognition' in window)) {
-    alert("Sorry, this page only works in Google Chrome");
+    alert("Sorry, this page only works in Google Chrome v. 25 and up, or Safari v. 7.1 and up");
     upgrade();
   } else {
     console.log("Upgrade not needed.")
