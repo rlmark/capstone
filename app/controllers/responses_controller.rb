@@ -4,7 +4,12 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = Response.new
+    @response = Response.new(response_params)
+    if @response.save
+      redirect_to new_response_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -20,5 +25,11 @@ class ResponsesController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def response_params
+    params.require(:response).permit(:transcript)
   end
 end

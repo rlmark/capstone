@@ -1,7 +1,10 @@
 <h2>Testing Recording and Saving</h2>
 
-<div id="test recording">
-  <h2 id="startRecording">Click here to test recording</h2>
-  <input id="results" type="textarea" name="transcript" value="Results go here">
-  <h3 id="endRecording">Click here to end recording</h3>
+<div id="recording">
+  <%= form_for @response do |f| %>
+    <h2 id="startRecording">Click here to test recording</h2>
+    <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>
+    <h3 id="endRecording">Click here to end recording</h3>
+    <%= f.submit "Submit" %>
+  <% end %>
 </div>

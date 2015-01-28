@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
+
 $( document ).ready(function() {
   if (!('webkitSpeechRecognition' in window)) {
     upgrade();
@@ -33,11 +34,11 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
+          final_transcript = capitalize(final_transcript) + " ";
         } else {
           interim_transcript += event.results[i][0].transcript;
         }
-        // fix capitalization at a later date.
-        //final_transcript = capitalize(final_transcript);
+        // fix capitalization at a later date. only capitalizes first letter.
         $('#results').val(final_transcript);
 
         console.log("Interim " + interim_transcript);
@@ -52,18 +53,19 @@ $( document ).ready(function() {
       recognition.stop()
     });
 
-    /// FORMATTING FUNCTIONS ///
-
-    // Capitalizes the first letter of a string.
-    // function capitalize(string) {
-    //   console.log("Capitalize function gets called");
-    //   console.log(string);
-    //   console.log(string.charAt(0).toUpperCase());
-    //   console.log(string.slice(1));
-    //   console.log(string.charAt(0).toUpperCase() + string.slice(1));
-    //
-    //   return string.charAt(0).toUpperCase() + string.slice(1);
-    // };
-
   } // Ends the else block if window contains webkit Speech API
+
+  /// FORMATTING FUNCTIONS ///
+
+  // Capitalizes the first letter of a string.
+  function capitalize(string) {
+    console.log("Capitalize function gets called");
+    console.log(string);
+    console.log(string.charAt(0).toUpperCase());
+    console.log(string.slice(1));
+    console.log(string.charAt(0).toUpperCase() + string.slice(1));
+
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
 }); // Ends the document.ready page load function
