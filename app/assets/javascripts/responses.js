@@ -4,6 +4,7 @@
 
 $( document ).ready(function() {
   if (!('webkitSpeechRecognition' in window)) {
+    alert("Sorry, this page only works in Google Chrome");
     upgrade();
   } else {
     console.log("Upgrade not needed.")
@@ -34,11 +35,11 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
+          // fix capitalization at a later date. only capitalizes first letter.
           final_transcript = capitalize(final_transcript) + " ";
         } else {
           interim_transcript += event.results[i][0].transcript;
         }
-        // fix capitalization at a later date. only capitalizes first letter.
         $('#results').val(final_transcript);
 
         console.log("Interim " + interim_transcript);
@@ -59,12 +60,6 @@ $( document ).ready(function() {
 
   // Capitalizes the first letter of a string.
   function capitalize(string) {
-    console.log("Capitalize function gets called");
-    console.log(string);
-    console.log(string.charAt(0).toUpperCase());
-    console.log(string.slice(1));
-    console.log(string.charAt(0).toUpperCase() + string.slice(1));
-
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
