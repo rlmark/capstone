@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  # Interview response routes
+  get 'responses',        to: 'responses#index',   as: :responses
+  get 'responses/new',    to: 'responses#new',     as: :new_response
+  post 'responses',       to: 'comments#create'
+  get 'response/:id',     to: 'responses#show',    as: :response
+  patch 'response/:id',   to: 'responses#update'
+  delete 'response/:id',  to: 'responses#destroy'
+  get 'response/:id/edit',to: 'responses#edit',    as: :edit_response
+
   # Home
   get '/', to: 'welcome#index', as: :root
 
