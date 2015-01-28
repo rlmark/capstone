@@ -56,7 +56,7 @@ $( document ).ready(function() {
 
   } // Ends the else block if window contains webkit Speech API
 
-  /// FORMATTING FUNCTIONS ///
+  ///~~** FORMATTING FUNCTIONS **~~///
 
   // Capitalizes the first letter of a string.
   function capitalize(string) {

@@ -30,6 +30,6 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:transcript)
+    params.require(:response).permit(:transcript, :question_id)
   end
 end
