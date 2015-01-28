@@ -2,7 +2,8 @@
 
 <div id="test recording">
   <h2 id="startRecording">Click here to test recording</h2>
-  <input type="textarea" name="transcript" value="">
+  <input id="results" type="textarea" name="transcript" value="Results go here">
+  <h3 id="endRecording">Click here to end recording</h3>
 </div>
 
 <style>
@@ -10,6 +11,7 @@ input {
   width: 80%;
   height: 200px;
 }
+
 </style>
 
 <script>
@@ -18,6 +20,7 @@ if (!('webkitSpeechRecognition' in window)) {
 } else {
   console.log("Upgrade not needed.")
   var recognition = new webkitSpeechRecognition();
+  recognition.lang = "en-US";
   var recognizing = false;
   var final_transcript = '';
 
@@ -40,11 +43,26 @@ if (!('webkitSpeechRecognition' in window)) {
   // Generates results
   recognition.onresult = function(event) {
     var interim_transcript = '';
-    console.log(event.resultIndex);
-    console.log(event.results[event.resultIndex][0].transcript)
+    for (var i = event.resultIndex; i < event.results.length; ++ i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        final_transcript + "."
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+      }
+      $('#results').val(final_transcript);
+
+      console.log("Interim " + interim_transcript);
+      console.log("Final " + final_transcript);
+    }
   }
 
-
+  // Ends the recording session
+  $('#endRecording').click(function(){
+    console.log("End recording")
+    recognizing = false
+    recognition.stop()
+  });
 
 }
 </script>
