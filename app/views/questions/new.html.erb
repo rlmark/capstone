@@ -1,2 +1,6 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<h1>Add an Interview Question</h1>
+<%= form_for @question do |f| %>
+  <%= f.label :content, "What question are you answering?" %>
+  <%= f.text_field :content  %>
+
+<% end %>
