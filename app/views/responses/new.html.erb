@@ -8,3 +8,140 @@
     <%= f.submit "Submit" %>
   <% end %>
 </div>
+
+<canvas id="canvas" width="300" height="300"></canvas>
+
+<script charset="utf-8">
+
+$(document).ready(function() {
+
+  var contextClass = (window.AudioContext ||
+    window.webkitAudioContext ||
+    window.mozAudioContext ||
+    window.oAudioContext ||
+    window.msAudioContext);
+    if (contextClass) {
+      // Web Audio API is available.
+      var context = new contextClass();
+    } else {
+      // Web Audio API is not available. Ask the user to use a supported browser.
+      alert("Please switch to Google Chrome v. 25 and up or Safari v. 7.1 and up.")
+    }
+
+    console.log(context)
+
+    function getAverageVolume(array) {
+      var values = 0;
+      // get all the frequency amplitudes
+      for (var i = 0; i < array.length; i++) {
+        values += array[i];
+      }
+      return values / (array.length);
+    }
+
+
+    function getCanvas() {
+      return document.getElementById('canvas');
+    }
+
+    function canvasDrawLine(oPosX, oPosY, fPosX, fPosY) {
+      var ctx = getCanvas().getContext('2d');
+      ctx.beginPath();
+      ctx.moveTo(oPosX, oPosY);
+      ctx.lineTo(fPosX, fPosY);
+      ctx.stroke();
+    }
+
+    function canvasDrawSquare(ulPosX, ulPosY, lrPosX, lrPosY) {
+      canvasDrawLine(ulPosX, ulPosY, ulPosX, lrPosY);
+      canvasDrawLine(ulPosX, lrPosY, lrPosX, lrPosY);
+      canvasDrawLine(lrPosX, lrPosY, lrPosX, ulPosY);
+      canvasDrawLine(lrPosX, ulPosY, ulPosX, ulPosY);
+    }
+
+    function canvasInitialize(width, height) {
+      // Set canvas parameters
+      getCanvas().width = width;
+      getCanvas().height = height;
+
+      // Outline
+      getCanvas().getContext('2d').clearRect(0,0,width,height);
+      canvasDrawSquare(0,0,width,height);
+    }
+
+    function onSuccess(stream) {
+      var context = new webkitAudioContext();
+      var mediaStreamSource = context.createMediaStreamSource(stream);
+
+      var analyser = context.createAnalyser();
+      analyser.smoothingTimeConstant = 0.3;
+      analyser.fftSize = 1024;
+
+      var javascriptNode = context.createScriptProcessor(2048, 1, 1);
+
+      javascriptNode.onaudioprocess = function(e) {
+        //var sample = e.inputBuffer.getChannelData(0);
+
+        // get the average, bincount is fftsize / 2
+        var array =  new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(array);
+
+        // calculate average
+        var average = getAverageVolume(array)
+
+        // // print value out (Not including this)
+        // log(average);
+
+        // draw green bar
+        getCanvas().getContext('2d').strokeStyle='#000000';
+        canvasInitialize(200,200);
+        getCanvas().getContext('2d').strokeStyle='#00ff00';
+        canvasDrawSquare(10, 150, 20, 150-average*5);
+      };
+
+      // stream -> mediaSource -> analyser -> javascriptNode -> destination
+      mediaStreamSource.connect(analyser);
+      analyser.connect(javascriptNode);
+      javascriptNode.connect(context.destination);
+    }
+
+    function onError() {
+      alert('Error');
+    }
+
+
+    if(navigator.getUserMedia) {
+      navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
+    } else if(navigator.webkitGetUserMedia) {
+      navigator.webkitGetUserMedia({video: false, audio: true}, onSuccess, onError);
+    }
+
+  // THIS IS FOR RECORDING, MAYBE EVENTUALLY
+  // function record() {
+  //   navigator.getUserMedia({audio: true}, function(localMediaStream){
+  //     mediaStream = localMediaStream;
+  //     var mediaStreamSource = context.createMediaStreamSource(localMediaStream);
+  //     rec = new Recorder(mediaStreamSource, {
+  //       workerPath: '/app/assetes/javascripts/recorderWorker.js'
+  //     });
+  //
+  //     rec.record();
+  //   }, function(err){
+  //     console.log('Not supported');
+  //   });
+  // }
+  //
+  // function stop() {
+  //   mediaStream.stop();
+  //   rec.stop();
+  //
+  //   rec.exportWAV(function(e){
+  //     rec.clear();
+  //     Recorder.forceDownload(e, "test.wav");
+  //   });
+  // }
+
+});
+
+
+</script>
