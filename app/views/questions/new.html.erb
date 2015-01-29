@@ -5,15 +5,24 @@
 
   <br>
 
-  <%= f.radio_button :private, 'private' %>
+  <%= f.radio_button :private, true %>
   <%= f.label :private_private, "Private"%>
-  <%= f.radio_button :private, 'public' %>
+  <%= f.radio_button :private, false %>
   <%= f.label :private_public, "Public" %>
 
   <br>
 
   <!-- Fields for the keywords go here -->
   <%= fields_for @talking_point do |point| %>
-  
+  <%= point.label :phrase, "Add a phrase or word." %>
+  <input type="text" name="talking_point[phrase][]" id="talking_point_phrase">
+  <!-- This is where more text fields are added -->
+  <div id="morePoints">
+  </div>
+  <button id="addMore">Add another</button>
+  <% end %>
+
+  <br>
+
   <%= f.submit "Submit" %>
 <% end %>

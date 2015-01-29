@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
   # Questions routes
-  get 'questions/index',    to: 'questions#index',    as: :questions
-  get 'questions/new',      to: 'questions#new',      as: :new_question
-  post 'questions/create',  to: 'questions#create'
-  get 'question/:id',       to: 'questions#show',     as: :question
-  patch 'question/:id',     to: 'questions#update'
-  delete 'question/:id',    to: 'questions#destroy'
-  get 'questions/:id/edit', to: 'questions#edit',     as: :edit_question
+  resources :questions
+  # get 'questions',    to: 'questions#index',    as: :questions
+  # get 'questions/new',      to: 'questions#new',      as: :new_question
+  # post 'questions',  to: 'questions#create'
+  # get 'question/:id',       to: 'questions#show',     as: :question
+  # patch 'question/:id',     to: 'questions#update'
+  # delete 'question/:id',    to: 'questions#destroy'
+  # get 'question/:id/edit', to: 'questions#edit',     as: :edit_question
 
   # Interview response routes
   get 'responses',          to: 'responses#index',   as: :responses
