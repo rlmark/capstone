@@ -2,6 +2,7 @@
 
 <div id="recording">
   <%= form_for @response do |f| %>
+    <%= f.hidden_field :question_id, value: params["question_id"] %>
     <h2 id="startRecording">Click here to test recording</h2>
     <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>
     <h3 id="endRecording">Click here to end recording</h3>
@@ -28,22 +29,21 @@ $(document).ready(function() {
       alert("Please switch to Google Chrome v. 25 and up or Safari v. 7.1 and up.")
     }
 
-    console.log(context)
-
     function getAverageVolume(array) {
       var values = 0;
-      // get all the frequency amplitudes
+      // get all the frequency??? amplitudes
       for (var i = 0; i < array.length; i++) {
         values += array[i];
       }
       return values / (array.length);
     }
 
-
+    // Get canvas
     function getCanvas() {
       return document.getElementById('canvas');
     }
 
+    // This gets called when drawwing square for each side.
     function canvasDrawLine(oPosX, oPosY, fPosX, fPosY) {
       var ctx = getCanvas().getContext('2d');
       ctx.beginPath();
@@ -52,6 +52,7 @@ $(document).ready(function() {
       ctx.stroke();
     }
 
+    // Drawing the actual square shape
     function canvasDrawSquare(ulPosX, ulPosY, lrPosX, lrPosY) {
       canvasDrawLine(ulPosX, ulPosY, ulPosX, lrPosY);
       canvasDrawLine(ulPosX, lrPosY, lrPosX, lrPosY);
@@ -59,12 +60,23 @@ $(document).ready(function() {
       canvasDrawLine(lrPosX, ulPosY, ulPosX, ulPosY);
     }
 
+    // Drawing a circle
+    function canvasDrawCircle(average){
+      var ctx = canvas.getContext('2d');
+      ctx.beginPath();
+      // x position, y position, radius, unknown, arc in radians.
+      ctx.arc(150, 150, average, 0, 2 * Math.PI, false);
+      ctx.lineWidth = 20; // super thick border
+      ctx.strokeStyle = '#55b2e1'; // beautiful blue
+      ctx.stroke();
+    }
+
     function canvasInitialize(width, height) {
       // Set canvas parameters
       getCanvas().width = width;
       getCanvas().height = height;
 
-      // Outline
+      // Outline of canvas
       getCanvas().getContext('2d').clearRect(0,0,width,height);
       canvasDrawSquare(0,0,width,height);
     }
@@ -86,17 +98,19 @@ $(document).ready(function() {
         var array =  new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(array);
 
-        // calculate average
+        // calculate average volume
         var average = getAverageVolume(array)
 
-        // // print value out (Not including this)
+        // // print value out (Not including this for now)
         // log(average);
 
         // draw green bar
         getCanvas().getContext('2d').strokeStyle='#000000';
-        canvasInitialize(200,200);
+        canvasInitialize(300,300);
         getCanvas().getContext('2d').strokeStyle='#00ff00';
-        canvasDrawSquare(10, 150, 20, 150-average*5);
+        // By changing the multiplication, you can change relative height of bar
+        canvasDrawSquare(10, 150, 40, 150-average*3);
+        canvasDrawCircle(average + 50);
       };
 
       // stream -> mediaSource -> analyser -> javascriptNode -> destination

@@ -29,18 +29,20 @@ $( document ).ready(function() {
       recognizing = true;
     }
 
-    // Generates results
+    // Generates transcription results
     recognition.onresult = function(event) {
-      var interim_transcript = '';
+      var interim_transcript = 'HI INTERIM TRANSCRIPT ';
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          // fix capitalization at a later date. only capitalizes first letter.
+          // Fix capitalization at a later date. This only capitalizes first letter.
           final_transcript = capitalize(final_transcript) + " ";
+          $('#results').val(final_transcript);
         } else {
           interim_transcript += event.results[i][0].transcript;
+          $('#results').val(interim_transcript);
         }
-        $('#results').val(final_transcript);
+        // Writes to form input
 
         console.log("Interim " + interim_transcript);
         console.log("Final " + final_transcript);
@@ -56,7 +58,7 @@ $( document ).ready(function() {
 
   } // Ends the else block if window contains webkit Speech API
 
-  ///~~** FORMATTING FUNCTIONS **~~///
+  ///~~** STRING FORMATTING FUNCTIONS **~~///
 
   // Capitalizes the first letter of a string.
   function capitalize(string) {

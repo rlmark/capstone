@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
       talking_points.each do |point|
         TalkingPoint.create(phrase: point, question_id: @question.id)
       end
-      redirect_to new_response_path
+      redirect_to new_response_path(question_id: @question.id)
     else
       render :new
     end
