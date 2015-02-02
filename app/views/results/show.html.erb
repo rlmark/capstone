@@ -1,4 +1,7 @@
 <h1>Results#show</h1>
 <p>Find me in app/views/results/show.html.erb</p>
 
-<%= @results %>
+<% @results.each do |result| %>
+  <%= result._source.transcript  %>
+  <%= result._id %>
+<% end %>
