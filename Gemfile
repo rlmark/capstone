@@ -31,6 +31,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Elasticearch
+
+gem 'elasticsearch'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
