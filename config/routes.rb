@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'results/show'
+
   # Questions routes
   resources :questions
   # get 'questions',    to: 'questions#index',    as: :questions
