@@ -22,7 +22,6 @@ class ResponsesController < ApplicationController
   end
 
   def index
-    @responses
   end
 
   def show

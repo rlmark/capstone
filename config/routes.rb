@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'results/show'
+  get 'results/show', to: 'results#show', as: :results
 
   # Questions routes
   resources :questions
