@@ -2,7 +2,7 @@
 class Response < ActiveRecord::Base
   belongs_to :question
 
-  searchkick highlight: [:transcript] 
+  searchkick highlight: [:transcript] # isn't working yet? 
 
   # only index the following column
   def search_data
