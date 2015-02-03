@@ -2,32 +2,32 @@
 
 <% @results.each_with_index do |result, i| %>
 
-<% result.hits.each do |hit| %>
-  <%=  hit["highlight"]["transcript.analyzed"][0] %><br>
-<% end %>
+  <h3>What you wanted to mention:</h3>
+  <%= @talking_points[i].phrase %>
 
-<h4>This data structure is way better</h4>
-<% result.with_details.each do |record, detail| %>
-  THIS SHOULD BE INTERPRETED <%= detail[:highlight][:transcript] %>
-  <%= record.inspect %>
-<% end %>
+  <h4>Did you hit your talking points?</h4>
+  <% result.with_details.each do |record, detail| %>
+    <%= detail[:highlight][:transcript].html_safe %><br>
 
-<h3>What you wanted to mention:</h3>
-<%= @talking_points[i].phrase %>
-
-<h3>Search result</h3>
-  <% result.each do |r|%>
-    <%= r.inspect %>
-    <%= r.id %><br>
-    <%= r.transcript %><br>
+  <h4>See your full transcript</h4>
+    <%= record.transcript %>
   <% end %>
+  <hr>
+
+<% end %>
+
+
+<!-- <h3>Search result</h3>
+  <%# result.each do |r|%>
+    <%#= r.inspect %>
+    <%#= r.id %><br>
+    <%#= r.transcript %><br>
+  <%# end %> -->
   <%#= result.hits %>
   <%#= result.hits.class %>
-  <hr>
   <!-- <%#= result.transcript %><br>
   <%#= result.id  %><br>
   <%#= result._score %><br> -->
-<% end %>
 
 <!-- <h2> test</h2>
 <%# @test_results.each do |r| %>
