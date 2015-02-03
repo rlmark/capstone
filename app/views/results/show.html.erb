@@ -1,21 +1,27 @@
 <h1>Results#show</h1>
 
-<% @results.each_with_index do |result, i| %>
+<% @results.each_with_index do |result, i| %><!-- displays results of search analysis-->
 
   <h3>What you wanted to mention:</h3>
   <%= @talking_points[i].phrase %>
 
   <h4>Did you hit your talking points?</h4>
-  <% result.with_details.each do |record, detail| %>
-    <%= detail[:highlight][:transcript].html_safe %><br>
+  <% result.with_details.each do |record, detail| %><!-- searchkick unique method -->
+    <%= detail[:highlight][:transcript].html_safe %><br><!-- highlights findings -->
 
-  <h4>See your full transcript</h4>
-    <%= record.transcript %>
+    <h4>See your full transcript</h4>
+    <%= record.transcript %><!-- record is the actual ActiveRecord object -->
   <% end %>
   <hr>
 
-<% end %>
+<% end %><!-- end of each talking point result -->
 
+<h3>Filler words</h3>
+<% @filler_words.each do |w| %>
+  <% w.with_details.each do |record, detail| %>
+    <%= detail[:highlight][:transcript].html_safe %><br>
+  <% end %>
+<% end %>
 
 <!-- <h3>Search result</h3>
   <%# result.each do |r|%>

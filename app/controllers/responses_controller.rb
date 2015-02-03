@@ -6,6 +6,7 @@ class ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     if @response.save
+      Response.searchkick_index.refresh # Forces a reindex upon creation
       redirect_to results_path(response_id: @response.id)
     else
       render :new
