@@ -11,7 +11,10 @@ class ResultsController < ApplicationController
     @results = @talking_points.collect do |point|
       #Response.search(point.phrase).response / records
       # Response.search(point.phrase).response.hits.hits < returns the matches?
-      Response.search(point.phrase)
+      Response.search( point.phrase,
+        where: {id: @response.id},
+        fields: [:transcript]
+      )
     end
 
     # @test_results = Response.search("test").results
