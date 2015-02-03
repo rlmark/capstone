@@ -1,9 +1,20 @@
 <h1>Results#show</h1>
 
 <% @results.each_with_index do |result, i| %>
-<%= result.hits.collect {|hit| hit["highlight"]["transcript.analyzed"][0]} %>
+
+<% result.hits.each do |hit| %>
+  <%=  hit["highlight"]["transcript.analyzed"][0] %><br>
+<% end %>
+
+<h4>This data structure is way better</h4>
+<% result.with_details.each do |record, detail| %>
+  THIS SHOULD BE INTERPRETED <%= detail[:highlight][:transcript] %>
+  <%= record.inspect %>
+<% end %>
+
 <h3>What you wanted to mention:</h3>
 <%= @talking_points[i].phrase %>
+
 <h3>Search result</h3>
   <% result.each do |r|%>
     <%= r.inspect %>
