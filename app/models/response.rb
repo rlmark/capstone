@@ -5,6 +5,7 @@ class Response < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  # Class method which wraps elasticsearch's DSL
   def self.search(query)
     __elasticsearch__.search(
     {

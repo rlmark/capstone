@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
       talking_points.each do |point|
         TalkingPoint.create(phrase: point, question_id: @question.id)
       end
+      #session[:question_id] = @question.id
       redirect_to new_response_path(question_id: @question.id)
     else
       render :new

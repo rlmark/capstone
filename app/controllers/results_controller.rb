@@ -1,6 +1,7 @@
 class ResultsController < ApplicationController
   def show
-    @results = Response.search("test")
-    @results = @results.response.hits.hits
+
+    analysis = Response.search("this is testing")
+    @results = analysis.results
   end
 end

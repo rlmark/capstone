@@ -2,6 +2,7 @@
 <p>Find me in app/views/results/show.html.erb</p>
 
 <% @results.each do |result| %>
-  <%= result._source.transcript  %>
-  <%= result._id %>
+  <%= result.transcript %><br>
+  <%= result.id  %><br>
+  <%= result._score %><br>
 <% end %>
