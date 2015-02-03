@@ -9,13 +9,13 @@ class ResultsController < ApplicationController
     @talking_points = @question.talking_points
     # Performs the elasticsearch NLP to see if talking_point was made
     @results = @talking_points.collect do |point|
-      #Response.search(point.phrase).response
+      #Response.search(point.phrase).response / records
       # Response.search(point.phrase).response.hits.hits < returns the matches?
-      Response.search(point.phrase).records
+      Response.search(point.phrase)
     end
 
-    @test_results = Response.search("test").results
-    # should return active record response objects
-    @second_test = Response.search("test").records
+    # @test_results = Response.search("test").results
+    # # should return active record response objects
+    # @second_test = Response.search("test").records
   end
 end
