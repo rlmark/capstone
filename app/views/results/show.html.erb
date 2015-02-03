@@ -2,7 +2,10 @@
 <p>Find me in app/views/results/show.html.erb</p>
 
 <% @results.each do |result| %>
+<%= result.hits.collect {|hit| hit["highlight"]["transcript.analyzed"][0]} %>
+<h3>Search result</h3>
   <% result.each do |r|%>
+    <%= r.inspect %>
     <%= r.id %><br>
     <%= r.transcript %><br>
   <% end %>

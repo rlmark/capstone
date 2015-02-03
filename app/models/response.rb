@@ -2,7 +2,12 @@
 class Response < ActiveRecord::Base
   belongs_to :question
 
-  searchkick
+  searchkick highlight: [:transcript] 
+
+  # only index the following column
+  def search_data
+    as_json only: [:transcript]
+  end
 
   Response.reindex
   # include Elasticsearch::Model

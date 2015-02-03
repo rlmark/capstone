@@ -13,7 +13,8 @@ class ResultsController < ApplicationController
       # Response.search(point.phrase).response.hits.hits < returns the matches?
       Response.search( point.phrase,
         where: {id: @response.id},
-        fields: [:transcript]
+        fields: [:transcript],
+        highlight: true
       )
     end
 
