@@ -2,7 +2,29 @@
 <p>Find me in app/views/results/show.html.erb</p>
 
 <% @results.each do |result| %>
-  <%= result.transcript %><br>
-  <%= result.id  %><br>
-  <%= result._score %><br>
+  <% result.each do |r|%>
+    <%= r.id %><br>
+    <%= r.transcript %><br>
+  <% end %>
+  <%#= result.hits %>
+  <%#= result.hits.class %>
+  <hr>
+  <!-- <%#= result.transcript %><br>
+  <%#= result.id  %><br>
+  <%#= result._score %><br> -->
+<% end %>
+
+<h2> test</h2>
+<% @test_results.each do |r| %>
+<%= r.class %><br>
+<%= r._id %><br>
+<%= r.transcript %><br>
+<% end %>
+
+<hr>
+
+<h2>second test</h2>
+<% @second_test.each do |t| %>
+  <%=  t.id %><br>
+  <%= t.transcript %><br>
 <% end %>

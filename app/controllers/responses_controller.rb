@@ -6,7 +6,7 @@ class ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     if @response.save
-      redirect_to new_response_path
+      redirect_to results_path(response_id: @response.id)
     else
       render :new
     end

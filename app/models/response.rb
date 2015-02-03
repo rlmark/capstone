@@ -19,7 +19,7 @@ class Response < ActiveRecord::Base
     )
   end
 
-  # This makes use of elasticsearch's built in english analyzer
+  # This makes use of elasticsearch's built in english analyzer (stemming etc.)
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :transcript, analyzer: 'english'
