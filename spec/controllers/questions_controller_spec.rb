@@ -16,10 +16,19 @@ RSpec.describe QuestionsController, :type => :controller do
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      post :create, { question: {content: "test question", private: true},
+                    "talking_point" => {"phrase" => ["My talking point"]}
+                    }
+      expect(response).to_not be("400")
+    end
+
+    it "redirects to the new_recording path" do
+      post :create, { question: {content: "test question", private: true},
+                    "talking_point" => {"phrase" => ["My talking point"]}
+                    }
+      expect(response.code).to eq "302"
     end
   end
 
@@ -30,16 +39,16 @@ RSpec.describe QuestionsController, :type => :controller do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     it "returns http success" do
-      get :update
+      patch :update
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET destroy" do
+  describe "DELETE destroy" do
     it "returns http success" do
-      get :destroy
+      delete :destroy
       expect(response).to have_http_status(:success)
     end
   end
