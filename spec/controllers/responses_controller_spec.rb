@@ -11,28 +11,29 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe "GET create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      post :create,  { response: {transcript: "test transcript params", question_id: 1}
+                    }
+      expect(response.code).to_not be "4xx"
     end
   end
 
   describe "GET edit" do
     it "returns http success" do
-      get :edit
+      get :edit, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET update" do
     it "returns http success" do
-      get :update
+      patch :update, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET destroy" do
     it "returns http success" do
-      get :destroy
+      delete :destroy, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
@@ -46,7 +47,7 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe "GET show" do
     it "returns http success" do
-      get :show
+      get :show, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end

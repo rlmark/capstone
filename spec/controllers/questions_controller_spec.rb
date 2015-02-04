@@ -34,28 +34,28 @@ RSpec.describe QuestionsController, :type => :controller do
 
   describe "GET show" do
     it "returns http success" do
-      get :show
+      get :show, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "PATCH update" do
     it "returns http success" do
-      patch :update
+      patch :update, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "DELETE destroy" do
     it "returns http success" do
-      delete :destroy
+      delete :destroy, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET edit" do
     it "returns http success" do
-      get :edit
+      get :edit, {id: 1}
       expect(response).to have_http_status(:success)
     end
   end

@@ -16,7 +16,7 @@ class ResultsController < ApplicationController
       )
     end
 
-    @filler_words = ["like", "totally", "basically", "sorta", "sort of", "kinda", "kind of"].collect do |word|
+    @filler_words = ["like", "totally", "you know", "basically", "sorta", "sort of", "kinda", "kind of"].collect do |word|
       Response.search(word,
         where: {id: @response.id},
         fields: [:transcript],
