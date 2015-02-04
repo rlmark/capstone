@@ -2,6 +2,8 @@
 class Response < ActiveRecord::Base
   belongs_to :question
 
+  validates :transcript, presence: true
+
   searchkick highlight: [:transcript]
 
   # only index the following column(s)

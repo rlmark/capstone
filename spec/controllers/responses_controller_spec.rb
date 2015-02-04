@@ -15,6 +15,18 @@ RSpec.describe ResponsesController, :type => :controller do
                     }
       expect(response.code).to_not be "4xx"
     end
+
+    context "invalid params"
+      it "does not save the response" do
+        expect do
+            post :create, { response: {transcript: "" }}
+        end.not_to change(Response, :count)
+      end
+
+      it "renders new page with invalid params" do
+        post :create, { response: {transcript: "" }}
+        expect(response).to render_template "new"
+    end
   end
 
   describe "GET edit" do

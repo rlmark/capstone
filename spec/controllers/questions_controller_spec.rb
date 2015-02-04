@@ -33,7 +33,7 @@ RSpec.describe QuestionsController, :type => :controller do
 
     context "invalid attributes" do
 
-      it "does not save article" do
+      it "does not save question" do
         expect do
           post :create, { question: {content: "" , private: true},
                         "talking_point" => {"phrase" => ["My talking point"]}
