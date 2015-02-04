@@ -11,7 +11,7 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe "GET create" do
     it "returns http success" do
-      post :create,  { response: {transcript: "test transcript params", question_id: 1}
+      post :create, { response: {transcript: "test transcript params", question_id: 1}
                     }
       expect(response.code).to_not be "4xx"
     end
