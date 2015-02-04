@@ -30,6 +30,25 @@ RSpec.describe QuestionsController, :type => :controller do
                     }
       expect(response.code).to eq "302"
     end
+
+    context "invalid attributes" do
+
+      it "does not save article" do
+        expect do
+          post :create, { question: {content: "" , private: true},
+                        "talking_point" => {"phrase" => ["My talking point"]}
+                        }
+        end.not_to change(Question, :count)
+      end
+
+      it "renders new template" do
+        post :create, { question: {content: "" , private: true},
+                      "talking_point" => {"phrase" => ["My talking point"]}
+                      }
+        expect(response).to render_template "new"
+      end
+
+    end
   end
 
   describe "GET show" do

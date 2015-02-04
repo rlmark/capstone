@@ -2,9 +2,9 @@
 class Response < ActiveRecord::Base
   belongs_to :question
 
-  searchkick highlight: [:transcript] # isn't working yet? 
+  searchkick highlight: [:transcript]
 
-  # only index the following column
+  # only index the following column(s)
   def search_data
     as_json only: [:transcript]
   end
