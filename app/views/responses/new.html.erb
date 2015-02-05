@@ -1,4 +1,6 @@
 <h2>Testing Recording and Saving</h2>
+<i class="fa fa-microphone"></i>
+<canvas id="canvas" width="300" height="300"></canvas>
 
 <div id="recording">
   <%= form_for @response do |f| %>
@@ -9,7 +11,6 @@
   <% end %>
 </div>
 
-<canvas id="canvas" width="300" height="300"></canvas>
 
 <script charset="utf-8">
 
@@ -124,7 +125,6 @@ $(document).ready(function() {
     function onError() {
       alert('Error');
     }
-
 
     if(navigator.getUserMedia) {
       navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
