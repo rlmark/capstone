@@ -34,3 +34,22 @@ header ul, header li{
 body {
   font-family: Futura, Helvetica, Arial, sans-serif;
 }
+
+.simple-form {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid coral;
+}
+
+input.simple-form {
+  padding: 5px 10px;
+}
+
+.simple-form:focus {
+  outline:none;
+  box-shadow:none;
+  border-bottom: 1px solid pink;
+}

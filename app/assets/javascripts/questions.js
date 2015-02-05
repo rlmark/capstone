@@ -5,7 +5,7 @@ $( document ).ready(function() {
   // Adds another input field for talking point
   $("#addMore").click(function(event){
     event.preventDefault();
-    $("#morePoints").append( '<input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced">' )
+    $("#morePoints").append( '<input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">' )
 
   });
 });

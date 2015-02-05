@@ -2,7 +2,7 @@
 <%= form_for @question, :html => {:multipart => true} do |f| %>
   <div class="form-group">
     <%= f.label :content, "What is your practice question?" %>
-    <%= f.text_field :content, class: "form-control" %>
+    <%= f.text_field :content, class: "form-control simple-form" %>
   </div>
 
 
@@ -16,7 +16,7 @@
   <div class="form-group">
     <%= fields_for @talking_point do |point| %>
       <%= point.label :phrase, "Add a phrase or word." %>
-      <input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control">
+      <input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">
       <!-- This is where more text fields are added -->
       <div id="morePoints">
       </div>
