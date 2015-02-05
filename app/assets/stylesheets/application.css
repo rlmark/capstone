@@ -14,3 +14,23 @@
  *= require_self
  *= require font-awesome
  */
+
+/****************/
+/*Header Styling*/
+/****************/
+
+header h1 {
+  display: inline-block;
+}
+
+header ul, header li{
+  display: inline-block;
+}
+
+/***************/
+/*Site Defaults*/
+/***************/
+
+body {
+  font-family: Futura, Helvetica, Arial, sans-serif;
+}
