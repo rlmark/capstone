@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
         TalkingPoint.create(phrase: point, question_id: @question.id)
       end
       session[:question_id] = @question.id
-      redirect_to new_response_path(question_id: @question.id)
+      redirect_to new_response_path
     else
       render :new
     end

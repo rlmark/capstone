@@ -5,6 +5,7 @@ class ResponsesController < ApplicationController
 
   def create
     @response = Response.new(response_params)
+    @response.question_id = session[:question_id]
     if @response.save
       Response.searchkick_index.refresh # Forces a reindex upon creation
       redirect_to results_path(response_id: @response.id)
@@ -31,6 +32,6 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:transcript, :question_id)
+    params.require(:response).permit(:transcript)
   end
 end
