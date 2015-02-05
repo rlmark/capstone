@@ -1,3 +1,4 @@
+#require 'byebug'
 class QuestionsController < ApplicationController
   def index
   end
@@ -35,7 +36,7 @@ class QuestionsController < ApplicationController
   private
 
   def talking_points
-    talking_points = params["talking_point"]["phrase"]
+    talking_points = params["question"]["talking_point"]["phrase"]
   end
 
   def question_params

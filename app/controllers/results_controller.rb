@@ -1,5 +1,5 @@
 class ResultsController < ApplicationController
-  before_action :question_created
+  before_action :interview_response_created
 
   def show
     # This is the preceding user input

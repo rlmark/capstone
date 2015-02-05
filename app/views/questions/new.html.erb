@@ -14,9 +14,10 @@
   </div>
 
   <div class="form-group">
-    <%= fields_for @talking_point do |point| %>
+    <%= f.fields_for @talking_point do |point| %>
       <%= point.label :phrase, "Add a phrase or word." %>
-      <input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">
+      <input type="text" name="question[talking_point][phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">
+      <%#= point.text_field :phrase %>
       <!-- This is where more text fields are added -->
       <div id="morePoints">
       </div>
