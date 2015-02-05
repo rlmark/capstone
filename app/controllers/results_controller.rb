@@ -1,5 +1,6 @@
-require 'byebug'
 class ResultsController < ApplicationController
+  before_action :question_created
+
   def show
     # This is the preceding user input
     @response = Response.find(params[:response_id])

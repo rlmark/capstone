@@ -6,6 +6,5 @@ $( document ).ready(function() {
   $("#addMore").click(function(event){
     event.preventDefault();
     $("#morePoints").append( '<input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">' )
-
   });
 });
