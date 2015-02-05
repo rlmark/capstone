@@ -5,13 +5,16 @@
     <h2 id="startRecording">Click here to test recording</h2>
     <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>
     <h3 id="endRecording">Click here to end recording</h3>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", id: "submit" %>
   <% end %>
 </div>
 
 <canvas id="canvas" width="300" height="300"></canvas>
 
 <script charset="utf-8">
+
+// REBECCA DON'T FORGET TO MOVE THIS TO A BETTER PLACE SOON
+// AND/OR INTEGRATE WITH TRANSCRIPTION CLICK FUNCITONS
 
 $(document).ready(function() {
 

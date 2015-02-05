@@ -3,6 +3,9 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $( document ).ready(function() {
+  // sets submit button to hide at page load
+  submit_display();
+
   if (!('webkitSpeechRecognition' in window)) {
     alert("Sorry, this page only works in Google Chrome v. 25 and up, or Safari v. 7.1 and up");
     upgrade();
@@ -36,7 +39,7 @@ $( document ).ready(function() {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
           // Fix capitalization at a later date. This only capitalizes first letter.
-          final_transcript = capitalize(final_transcript) + " ";
+          final_transcript = capitalize(final_transcript);
           $('#results').val(final_transcript);
         } else {
           interim_transcript += event.results[i][0].transcript;
@@ -51,9 +54,10 @@ $( document ).ready(function() {
 
     // Ends the recording session
     $('#endRecording').click(function(){
-      console.log("End recording")
-      recognizing = false
-      recognition.stop()
+      console.log("End recording");
+      recognizing = false;
+      recognition.stop();
+      submit_display();
     });
 
   } // Ends the else block if window contains webkit Speech API
@@ -64,5 +68,13 @@ $( document ).ready(function() {
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
+
+  ///~~** PAGE FUNCTIONALITY FUNCTIONS **~~///
+
+  // Controls visibility of submit button
+  function submit_display() {
+    console.log("The hide function is here!")
+    $("#submit").toggle();
+  }
 
 }); // Ends the document.ready page load function
