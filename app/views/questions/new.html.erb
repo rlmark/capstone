@@ -1,28 +1,28 @@
 <h1>Add an Interview Question</h1>
 <%= form_for @question, :html => {:multipart => true} do |f| %>
-  <%= f.label :content, "What is your practice question?" %>
-  <%= f.text_field :content  %>
-
-  <br>
-
-  <%= f.radio_button :private, true %>
-  <%= f.label :private_private, "Private"%>
-  <%= f.radio_button :private, false %>
-  <%= f.label :private_public, "Public" %>
-
-  <br>
-
-  <!-- Fields for the keywords go here -->
-  <%= fields_for @talking_point do |point| %>
-  <%= point.label :phrase, "Add a phrase or word." %>
-  <input type="text" name="talking_point[phrase][]" id="talking_point_phrase">
-  <!-- This is where more text fields are added -->
-  <div id="morePoints">
+  <div class="form-group">
+    <%= f.label :content, "What is your practice question?" %>
+    <%= f.text_field :content, class: "form-control" %>
   </div>
-  <button id="addMore">Add another</button>
-  <% end %>
 
-  <br>
 
-  <%= f.submit "Submit" %>
+  <div class="form-group">
+    <%= f.radio_button :private, true %>
+    <%= f.label :private_true, "Private"%>
+    <%= f.radio_button :private, false %>
+    <%= f.label :private_false, "Public" %>
+  </div>
+
+  <div class="form-group">
+    <%= fields_for @talking_point do |point| %>
+      <%= point.label :phrase, "Add a phrase or word." %>
+      <input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control">
+      <!-- This is where more text fields are added -->
+      <div id="morePoints">
+      </div>
+      <button id="addMore" class="btn btn-default">Add another</button>
+    <% end %>
+  </div>
+
+  <%= f.submit "Submit", class: "btn btn-default" %>
 <% end %>
