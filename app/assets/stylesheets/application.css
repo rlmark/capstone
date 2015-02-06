@@ -42,6 +42,10 @@ body {
   outline: 0;
   background: transparent;
   border-bottom: 1px solid coral;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.5s ease;
 }
 
 input.simple-form {
@@ -51,5 +55,5 @@ input.simple-form {
 .simple-form:focus {
   outline:none;
   box-shadow:none;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #F1C5B8;
 }
