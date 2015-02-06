@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  # before_action :question_created, only: [:new, :create]
+  before_action :question_created, only: [:new, :create]
 
   def new
     @response = Response.new
