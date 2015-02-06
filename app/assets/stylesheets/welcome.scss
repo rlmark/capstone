@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// image block with headline
 #headline {
   text-align: center;
   height: 700px;
@@ -26,10 +27,20 @@
   -moz-transition: background-color 500ms ease;
   -o-transition: background-color 500ms ease;
   transition: 0.5s ease;
+  width: 100px;
+  height: 100px;
+  padding-top: 25px;
+  border: 1px solid transparent;
+  margin: 20px;
 }
 #big-mic:hover {
-
   color: #F1C5B8;
+  border: 1px solid #F1C5B8;
+  border-radius: 100%;
+}
+#big-mic:active {
+  color: coral;
+  border: 1px solid coral;
 }
 
 #second-block {
