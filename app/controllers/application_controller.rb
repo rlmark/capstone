@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def question_created
-    if session[:question_id] == nil
-      redirect_to new_question_path
-    end
-  end
+  # def question_created
+  #   if session[:question_id] == nil
+  #     redirect_to new_question_path
+  #   end
+  # end
 
 end

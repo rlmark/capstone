@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  #before_action :question_created, only: [:new]
+  # before_action :question_created, only: [:new, :create]
 
   def new
     @response = Response.new
@@ -9,6 +9,7 @@ class ResponsesController < ApplicationController
     @response = Response.new(response_params)
     @response.question_id = session[:question_id]
     if @response.save
+      session[:question_id] = nil
       Response.searchkick_index.refresh # Forces a reindex upon creation
       redirect_to results_path(response_id: @response.id)
     else

@@ -25,14 +25,14 @@
         1,
         null,
         null,
-        1,
+        0,
         null,
         null,
         1,
         1,
         null,
         null,
-        1,
+        0,
         null,
         null,
         1,
@@ -411,6 +411,7 @@
         null
       ],
       "/Users/rebeccamark/Documents/Ada/Capstone/capstone/app/controllers/questions_controller.rb": [
+        null,
         1,
         1,
         null,
@@ -424,10 +425,10 @@
         4,
         4,
         2,
-        2,
+        0,
         null,
-        2,
-        2,
+        0,
+        0,
         null,
         2,
         null,
@@ -472,8 +473,8 @@
         null,
         null,
         1,
-        1,
-        1,
+        0,
+        0,
         null,
         null,
         null,
@@ -550,10 +551,10 @@
       ],
       "/Users/rebeccamark/Documents/Ada/Capstone/capstone/app/controllers/responses_controller.rb": [
         1,
-        1,
+        null,
         null,
         1,
-        0,
+        1,
         null,
         null,
         1,
@@ -734,6 +735,7 @@
         null
       ],
       "/Users/rebeccamark/Documents/Ada/Capstone/capstone/app/models/question.rb": [
+        1,
         1,
         1,
         1,
@@ -962,6 +964,6 @@
         null
       ]
     },
-    "timestamp": 1423178320
+    "timestamp": 1423180752
   }
 }
