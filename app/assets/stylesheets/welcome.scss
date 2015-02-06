@@ -7,22 +7,26 @@
   text-align: center;
   height: 700px;
   background: linear-gradient(
-  rgba(0, 0, 0, 0.45),
-  rgba(0, 0, 0, 0.45)
+  rgba(0, 0, 0, 0.6),
+  rgba(0, 0, 0, 0.6)
   ), image-url("office.jpeg");
   background-size: cover;
   background-attachment: fixed;
   background-repeate: no-repeat;
   background-color: grey;
 }
-// Where the e tagline text sits
+
+// Where the tagline text sits
 .text-container {
-  padding-top: 200px;
+  padding-top: 150px;
   color: white;
+}
+.text-container * {
+  margin: 10px;
 }
 
 // Styling the mic symbol
-#big-mic {
+.big-mic {
   -webkit-transition: background-color 500ms ease;
   -moz-transition: background-color 500ms ease;
   -o-transition: background-color 500ms ease;
@@ -31,19 +35,45 @@
   height: 100px;
   padding-top: 25px;
   border: 1px solid transparent;
-  margin: 20px;
+  margin: 20px auto;
+  display: block;
+  //text-align: center;
 }
-#big-mic:hover {
+.big-mic:hover {
   color: #F1C5B8;
   border: 1px solid #F1C5B8;
   border-radius: 100%;
 }
-#big-mic:active {
+.big-mic:active {
   color: coral;
   border: 1px solid coral;
 }
 
+// the form where the bio gets written
+.big-form {
+  border: 1px solid coral;
+  box-shadow: none;
+  border-radius: 6px;
+  outline: 0;
+  background: linear-gradient(
+  rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.5)
+  );
+  width: 50%;
+  height: 100px;
+  min-width: 250px;
+  display: none;
+}
+textarea.big-form {
+  padding: 5px 10px;
+}
+
+// Second block of color
 #second-block {
   height: 500px;
   background-color: #F1C5B8;
+}
+
+#second-block h1 {
+  text-align: center;
 }

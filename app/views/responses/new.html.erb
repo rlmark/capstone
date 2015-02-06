@@ -1,10 +1,10 @@
 <h2>Testing Recording and Saving</h2>
-<i class="fa fa-microphone"></i>
+
 <canvas id="canvas" width="300" height="300"></canvas>
 
 <div id="recording">
   <%= form_for @response do |f| %>
-    <h2 id="startRecording">Click here to test recording</h2>
+    <i id="startRecording" class="fa fa-microphone fa-4x"></i>
     <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>
     <h3 id="endRecording">Click here to end recording</h3>
     <%= f.submit "Submit", id: "submit" %>
