@@ -1,16 +1,19 @@
-<h1>Results#show</h1>
+<h1>Interview analysis</h1>
+<h2>Your final transcript:</h2>
+<%= @response.transcript %>
+
+<h3>What you wanted to mention:</h3>
 
 <% @results.each_with_index do |result, i| %><!-- displays results of search analysis-->
 
-  <h3>What you wanted to mention:</h3>
   <%= @talking_points[i].phrase %>
 
   <h4>Did you hit your talking points?</h4>
   <% result.with_details.each do |record, detail| %><!-- searchkick unique method -->
-    <%= detail[:highlight][:transcript].html_safe %><br><!-- highlights findings -->
+    <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
 
-    <h4>See your full transcript</h4>
-    <%= record.transcript %><!-- record is the actual ActiveRecord object -->
+    <!-- <h4>See your full transcript</h4>
+    <%#= record.transcript %>--><!-- record is the actual ActiveRecord object -->
   <% end %>
   <hr>
 

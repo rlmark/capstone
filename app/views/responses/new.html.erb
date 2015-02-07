@@ -4,7 +4,7 @@
 
 <div id="recording">
   <%= form_for @response do |f| %>
-    <i id="startRecording" class="fa fa-microphone fa-4x"></i>
+    <i id="startRecording" class="big-mic fa fa-microphone fa-4x "></i>
     <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>
     <h3 id="endRecording">Click here to end recording</h3>
     <%= f.submit "Submit", id: "submit" %>

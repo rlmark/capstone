@@ -36,8 +36,8 @@
   padding-top: 25px;
   border: 1px solid transparent;
   margin: 20px auto;
-  display: block;
-  //text-align: center;
+  display: block !important;
+  text-align: center;
 }
 .big-mic:hover {
   color: #F1C5B8;

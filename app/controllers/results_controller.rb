@@ -21,6 +21,7 @@ class ResultsController < ApplicationController
       Response.search(word,
         where: {id: @response.id},
         fields: [:transcript],
+        misspellings: false,
         highlight: true
       )
     end

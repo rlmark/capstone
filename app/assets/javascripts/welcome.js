@@ -6,6 +6,5 @@
 $( document ).ready(function() {
   $("#big-mic-home").click(function(event){
     $("#bio-form").fadeIn();
-    $(".big-mic").css({display: 'block'})
   });
 });
