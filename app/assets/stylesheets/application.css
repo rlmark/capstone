@@ -19,12 +19,32 @@
 /*Header Styling*/
 /****************/
 
+header {
+  background-color: #3d3a39;
+}
+
 header h1 {
   display: inline-block;
+  color: white;
+  padding: 0 20px;
+  margin: 20px 0;
 }
 
 header ul, header li{
   display: inline-block;
+  padding: 0 10px;
+}
+
+header ul li a {
+  color: #F1C5B8;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.5s ease;
+}
+
+header ul li a:hover {
+  color: coral;
 }
 
 /***************/
