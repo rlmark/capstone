@@ -2,14 +2,17 @@
 <h2>Your final transcript:</h2>
 <%= @response.transcript %>
 
-<h3>What you wanted to mention:</h3>
+<h3>Did you hit your talking points?</h3>
 
 <% @results.each_with_index do |result, i| %><!-- displays results of search analysis-->
 
-  <%= @talking_points[i].phrase %>
+  <p>
+    Your phrase: <%= @talking_points[i].phrase %>
+  </p>
 
-  <h4>Did you hit your talking points?</h4>
+
   <% result.with_details.each do |record, detail| %><!-- searchkick unique method -->
+    <i class="fa fa-check-circle-o"></i>
     <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
 
     <!-- <h4>See your full transcript</h4>
