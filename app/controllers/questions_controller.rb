@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @talking_point = TalkingPoint.new
     @question = Question.new(question_params)
     if @question.save
       talking_points.each do |point|

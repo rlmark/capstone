@@ -12,7 +12,7 @@
 
 
   <% result.with_details.each do |record, detail| %><!-- searchkick unique method -->
-    <i class="fa fa-check-circle-o"></i>
+    <i class="fa fa-check-circle-o fa-lg"></i>
     <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
 
     <!-- <h4>See your full transcript</h4>
