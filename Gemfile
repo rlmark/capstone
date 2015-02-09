@@ -29,8 +29,7 @@ gem 'font-awesome-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-gem 'capistrano-rails'
+
 
 # Elasticearch
 
@@ -43,7 +42,16 @@ gem 'searchkick'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
 end
+
+gem 'therubyracer', platforms: :ruby
 
 group :development, :test do
   gem 'byebug'
