@@ -34,8 +34,20 @@ $( document ).ready(function() {
       $('#results').val("Inside start function");
     }
 
+    // This gets run after recognition.stop processes
+    recognition.onend = function() {
+      recognizing = false;
+      submit_display();
+    }
+
+    // In the event of an error, this will get called
+    recognition.onerror = function(e) {
+      $("#results").val(e.toString());
+    }
+
     // Generates transcription results
     recognition.onresult = function(event) {
+      // note it accesses the mic, but not this on mobile.
       $("#results").val("inside recognition");
       var interim_transcript = 'HI INTERIM TRANSCRIPT ';
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
@@ -58,9 +70,7 @@ $( document ).ready(function() {
     // Ends the recording session
     $('#endRecording').click(function(){
       console.log("End recording");
-      recognizing = false;
       recognition.stop();
-      submit_display();
     });
 
   } // Ends the else block if window contains webkit Speech API
