@@ -41,6 +41,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content, :private)
+    params.require(:question).permit(:content, :private, :talking_points)
   end
 end
