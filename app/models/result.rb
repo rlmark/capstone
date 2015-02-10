@@ -1,5 +1,15 @@
 class Result < ActiveRecord::Base
 
+  def self.search_talking_points(talking_points, response)
+    talking_points.collect do |point|
+      Response.search( point.phrase,
+      where: {id: response.id},
+      fields: [:transcript],
+      highlight: true
+      )
+    end
+  end
+
   def self.transcript_generator(filler_words)
     transcripts = []
     filler_words.each do |word|
