@@ -17,13 +17,16 @@ class ResultsController < ApplicationController
       )
     end
 
-    @filler_words = filler_words(@response)
-    #   Response.search(word,
-    #     where: {id: @response.id},
-    #     fields: [:transcript],
-    #     misspellings: false,
-    #     highlight: true
-    #   )
+    @filler_words = Result.search_filler_words(@response)
+
+    @transcripts = Result.transcript_generator(@filler_words)
+    # @transcripts = []
+    # @filler_words.each do |word|
+    #   word.with_details.each do |record, detail|
+    #     @transcripts << detail[:highlight][:transcript]
+    #   end
     # end
+
+    @count = Result.filler_word_counter(@transcripts)
   end
 end

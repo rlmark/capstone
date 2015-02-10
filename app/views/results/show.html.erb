@@ -10,8 +10,7 @@
 
   <!-- Searchkick method gets elasticsearch result and activerecord object -->
   <% result.with_details.each do |record, detail| %>
-  <%= raise detail.inspect %>
-    <% if detail.length == 0 %>
+    <% if detail == 0 %>
       <i class="fa fa-times-circle fa-2x"></i>
     <% else %>
       <i class="fa fa-check-circle-o fa-2x"></i>
@@ -23,36 +22,8 @@
 
 <% end %><!-- end of each talking point result -->
 
-<h3>Filler words</h3>
-<% @filler_words.each do |w| %>
-  <% w.with_details.each do |record, detail| %>
-    <%= detail[:highlight][:transcript].html_safe %><br>
-  <% end %>
+<h3><%=@count%> Filler words detected</h3> <!--Filler word -->
+
+<% @transcripts.each do |transcript| %>
+  <li><%= transcript.html_safe %></li>
 <% end %>
-
-<!-- <h3>Search result</h3>
-  <%# result.each do |r|%>
-    <%#= r.inspect %>
-    <%#= r.id %><br>
-    <%#= r.transcript %><br>
-  <%# end %> -->
-  <%#= result.hits %>
-  <%#= result.hits.class %>
-  <!-- <%#= result.transcript %><br>
-  <%#= result.id  %><br>
-  <%#= result._score %><br> -->
-
-<!-- <h2> test</h2>
-<%# @test_results.each do |r| %>
-<%#= r.class %><br>
-<%#= r._id %><br>
-<%#= r.transcript %><br>
-<%# end %>
-
-<hr>
-
-<h2>second test</h2>
-<%# @second_test.each do |t| %>
-  <%#=  t.id %><br>
-  <%#= t.transcript %><br>
-<%# end %> -->

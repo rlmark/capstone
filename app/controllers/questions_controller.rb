@@ -11,9 +11,7 @@ class QuestionsController < ApplicationController
   def create
     if @question = Question.create(question_params)
     #@question = Question.new(question_params)
-    #@talking_point = TalkingPoint.new
     # if @question.save
-      # raise params.inspect
       talking_points.each do |point|
         TalkingPoint.create(phrase: point, question_id: @question.id)
       end
