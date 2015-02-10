@@ -3,21 +3,22 @@
 <%= @response.transcript %>
 
 <h3>Did you hit your talking points?</h3>
-
 <% @results.each_with_index do |result, i| %><!-- displays results of search analysis-->
 
-  <p>
-    Your phrase: <%= @talking_points[i].phrase %>
-  </p>
+  <!-- shows user the phrase he/she wanted to say-->
+  <p>Your phrase: <%= @talking_points[i].phrase %></p>
 
-
-  <% result.with_details.each do |record, detail| %><!-- searchkick unique method -->
-    <i class="fa fa-check-circle-o fa-lg"></i>
-    <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
-
-    <!-- <h4>See your full transcript</h4>
-    <%#= record.transcript %>--><!-- record is the actual ActiveRecord object -->
+  <!-- Searchkick method gets elasticsearch result and activerecord object -->
+  <% result.with_details.each do |record, detail| %>
+  <%= raise detail.inspect %>
+    <% if detail.length == 0 %>
+      <i class="fa fa-times-circle fa-2x"></i>
+    <% else %>
+      <i class="fa fa-check-circle-o fa-2x"></i>
+      <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
+    <% end %>
   <% end %>
+
   <hr>
 
 <% end %><!-- end of each talking point result -->
