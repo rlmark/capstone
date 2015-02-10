@@ -16,17 +16,10 @@ class ResultsController < ApplicationController
         highlight: true
       )
     end
-    
+
     @filler_words = Result.search_filler_words(@response)
 
     @transcripts = Result.transcript_generator(@filler_words)
-    # @transcripts = []
-    # @filler_words.each do |word|
-    #   word.with_details.each do |record, detail|
-    #     @transcripts << detail[:highlight][:transcript]
-    #   end
-    # end
-    #raise @transcripts.inspect
 
     @count = Result.filler_word_counter(@transcripts)
   end
