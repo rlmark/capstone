@@ -24,12 +24,14 @@ $( document ).ready(function() {
     // Prompts user to allow mic, starts the actual recording
     $('#startRecording').click(function(){
       recognition.start()
+      $('#results').val("Inside click handler");
     });
 
     // Fires when recognition.start is called
     recognition.onstart = function() {
       console.log("I'm starting.");
       recognizing = true;
+      $('#results').val("Inside start function");
     }
 
     // Generates transcription results
