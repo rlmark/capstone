@@ -8,21 +8,21 @@
   <!-- shows user the phrase he/she wanted to say-->
   <p>Your phrase: <%= @talking_points[i].phrase %></p>
 
-  <!-- Searchkick method gets elasticsearch result and activerecord object -->
+  <!--red X if no results found-->
+  <% if result.hits == [] %>
+    <i class="fa fa-times-circle fa-2x"></i>
+  <% end %>
+
+  <!-- result found: searchkick method gets elasticsearch result and activerecord object -->
   <% result.with_details.each do |record, detail| %>
-    <% if detail == 0 %>
-      <i class="fa fa-times-circle fa-2x"></i>
-    <% else %>
-      <i class="fa fa-check-circle-o fa-2x"></i>
-      <%= detail[:highlight][:transcript].html_safe %><!-- highlights findings -->
-    <% end %>
+    <i class="fa fa-check-circle-o fa-2x"></i> <%= detail[:highlight][:transcript].html_safe %>
   <% end %>
 
   <hr>
 
 <% end %><!-- end of each talking point result -->
 
-<h3><%=@count%> Filler words detected</h3> <!--Filler word -->
+<h3><%= @count %> Filler words detected</h3> <!--Filler word -->
 
 <% @transcripts.each do |transcript| %>
   <li><%= transcript.html_safe %></li>

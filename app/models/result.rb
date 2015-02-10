@@ -4,7 +4,7 @@ class Result < ActiveRecord::Base
     transcripts = []
     filler_words.each do |word|
       word.with_details.each do |record, detail|
-        transcripts << detail[:highlight][:transcript]
+        transcripts.push( detail[:highlight][:transcript] )
       end
     end
     transcripts
@@ -15,7 +15,11 @@ class Result < ActiveRecord::Base
     transcripts.each do |transcript|
       count << transcript.scan(/<em>/)
     end
-    count.flatten!.length
+    if count.flatten! != nil
+      return count.length
+    else
+      return 0
+    end
   end
 
   def self.search_filler_words(response)
