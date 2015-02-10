@@ -36,6 +36,7 @@ $( document ).ready(function() {
 
     // Generates transcription results
     recognition.onresult = function(event) {
+      $("#results").val("inside recognition");
       var interim_transcript = 'HI INTERIM TRANSCRIPT ';
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
