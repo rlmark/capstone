@@ -17,13 +17,13 @@ class ResultsController < ApplicationController
       )
     end
 
-    @filler_words = ["like", "totally", "you know", "basically", "sorta", "sort of", "kinda", "kind of"].collect do |word|
-      Response.search(word,
-        where: {id: @response.id},
-        fields: [:transcript],
-        misspellings: false,
-        highlight: true
-      )
-    end
+    @filler_words = filler_words(@response)
+    #   Response.search(word,
+    #     where: {id: @response.id},
+    #     fields: [:transcript],
+    #     misspellings: false,
+    #     highlight: true
+    #   )
+    # end
   end
 end
