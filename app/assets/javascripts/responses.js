@@ -42,7 +42,7 @@ $( document ).ready(function() {
 
     // In the event of an error, this will get called
     recognition.onerror = function(e) {
-      $("#results").val(e.toString());
+      $("#results").val(e.error + " \n" + e.message);
     }
 
     // Generates transcription results
