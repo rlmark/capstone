@@ -4,13 +4,13 @@
 
 $( document ).ready(function() {
   // sets submit button to hide at page load
-  submit_display();
+  //submit_display();
 
   if (!('webkitSpeechRecognition' in window)) {
     alert("Sorry, this page only works in Google Chrome v. 25 and up, or Safari v. 7.1 and up");
     upgrade();
   } else {
-    console.log("Upgrade not needed.")
+    //console.log("Upgrade not needed.")
     var recognition = new webkitSpeechRecognition();
     recognition.lang = "en-US";
     var recognizing = false;
@@ -23,7 +23,7 @@ $( document ).ready(function() {
 
     // Prompts user to allow mic, starts the actual recording
     $('#startRecording').click(function(){
-      recognition.start()
+      recognition.start();
       $('#results').val("Inside click handler");
     });
 
@@ -37,7 +37,7 @@ $( document ).ready(function() {
     // This gets run after recognition.stop processes
     recognition.onend = function() {
       recognizing = false;
-      submit_display();
+      //submit_display();
     }
 
     // In the event of an error, this will get called
@@ -53,17 +53,15 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          // Fix capitalization at a later date. This only capitalizes first letter.
           final_transcript = capitalize(final_transcript);
           $('#results').val(final_transcript);
         } else {
           interim_transcript += event.results[i][0].transcript;
           $('#results').val(interim_transcript);
         }
-        // Writes to form input
 
-        console.log("Interim " + interim_transcript);
-        console.log("Final " + final_transcript);
+        //console.log("Interim " + interim_transcript);
+        //console.log("Final " + final_transcript);
       }
     }
 
@@ -74,6 +72,7 @@ $( document ).ready(function() {
     });
 
   } // Ends the else block if window contains webkit Speech API
+
 
   ///~~** STRING FORMATTING FUNCTIONS **~~///
 

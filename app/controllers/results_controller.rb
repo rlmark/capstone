@@ -10,16 +10,9 @@ class ResultsController < ApplicationController
     @talking_points = @question.talking_points
     # Performs the elasticsearch NLP to see if talking_point was made
     @results = Result.search_talking_points(@talking_points, @response)
-    # @results = @talking_points.collect do |point|
-    #   Response.search( point.phrase,
-    #     where: {id: @response.id},
-    #     fields: [:transcript],
-    #     highlight: true
-    #   )
-    # end
 
     @filler_words = Result.search_filler_words(@response)
-
+    
     @transcripts = Result.transcript_generator(@filler_words)
 
     @count = Result.filler_word_counter(@transcripts)

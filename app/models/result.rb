@@ -33,7 +33,7 @@ class Result < ActiveRecord::Base
   end
 
   def self.search_filler_words(response)
-    ["like", "totally", "you know", "basically", "sorta", "sort of", "kinda", "kind of"].collect do |word|
+    filler_word_list.collect do |word|
       Response.search(word,
       where: {id: response.id},
       fields: [:transcript],
@@ -41,5 +41,9 @@ class Result < ActiveRecord::Base
       highlight: true
       )
     end
+  end
+
+  def self.filler_word_list
+    ["like", "totally", "you know", "basically", "sorta", "sort of", "kinda", "kind of"]
   end
 end
