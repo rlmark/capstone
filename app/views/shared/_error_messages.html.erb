@@ -1,0 +1,4 @@
+<!-- Hi I get rendered -->
+<% if obj.errors[col].any? %>
+  <div class="error-message"><strong><%= (col.to_s + "_").capitalize.gsub!(/\_/, " ") %></strong> <%= obj.errors[col].first %></div>
+<% end %>

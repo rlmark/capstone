@@ -3,6 +3,7 @@
   <div class="form-group">
     <%= f.label :content, "What is your practice question?" %>
     <%= f.text_field :content, class: "form-control simple-form" %>
+    <%= render "shared/error_messages", obj: @question, col: :content %>
   </div>
 
 
