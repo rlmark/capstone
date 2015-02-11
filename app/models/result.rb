@@ -24,6 +24,10 @@ class Result < ActiveRecord::Base
     transcripts
   end
 
+  def self.total_filler_count(count_hash)
+    count_hash.values.sum
+  end
+
   # def self.filler_word_counter(transcripts)
   #   count = []
   #   transcripts.each do |transcript|

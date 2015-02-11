@@ -16,6 +16,6 @@ class ResultsController < ApplicationController
     @highlighted_transcripts = Result.transcript_generator(@filler_words)
 
     @count = Result.filler_word_counter(@response.transcript)
-
+    @sum = Result.total_filler_count(@count)
   end
 end
