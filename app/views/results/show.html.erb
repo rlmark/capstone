@@ -22,8 +22,13 @@
 
 <% end %><!-- end of each talking point result -->
 
-<h3><%= @count %> Filler words detected</h3> <!--Filler word -->
+<h3><%= @count.values.sum %> Filler words detected</h3> <!--Filler word -->
 
-<% @transcripts.each do |transcript| %>
-  <li><%= transcript.html_safe %></li>
+<% @count.keys.each_with_index do |filler_word, i| %>
+  <h4><%= @count.values[i] %> <%= filler_word %></h4>
+  <%= @highlighted_transcripts[i] %>
 <% end %>
+
+<%# @highlighted_transcripts.each do |transcript| %>
+  <!-- <li><%#= transcript.html_safe %></li> -->
+<%# end %>

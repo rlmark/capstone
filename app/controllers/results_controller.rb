@@ -12,9 +12,10 @@ class ResultsController < ApplicationController
     @results = Result.search_talking_points(@talking_points, @response)
 
     @filler_words = Result.search_filler_words(@response)
-    
-    @transcripts = Result.transcript_generator(@filler_words)
 
-    @count = Result.filler_word_counter(@transcripts)
+    @highlighted_transcripts = Result.transcript_generator(@filler_words)
+
+    @count = Result.filler_word_counter(@response.transcript)
+
   end
 end
