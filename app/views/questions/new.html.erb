@@ -1,11 +1,11 @@
 <h1>Add an Interview Question</h1>
 <%= form_for @question, :html => {:multipart => true} do |f| %>
+
   <div class="form-group">
     <%= f.label :content, "What is your practice question?" %>
     <%= f.text_field :content, class: "form-control simple-form" %>
     <%= render "shared/error_messages", obj: @question, col: :content %>
   </div>
-
 
   <div class="form-group">
     <%= f.radio_button :private, true %>
