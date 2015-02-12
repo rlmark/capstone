@@ -53,8 +53,9 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          final_transcript = capitalize(final_transcript);
+          //final_transcript = capitalize(final_transcript);
           $('#results').val(final_transcript);
+          word_blocks(final_transcript);
         } else {
           interim_transcript += event.results[i][0].transcript;
           $('#results').val(interim_transcript);
@@ -79,6 +80,16 @@ $( document ).ready(function() {
   // Capitalizes the first letter of a string.
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  function word_blocks(string) {
+    var word_array = string.split(" ")
+    for(var i = 1; i <= word_array.length; i++ ) {
+      console.log("this is word " + word_array[i])
+      var width = word_array[i].length * 5;
+      var new_div = $("<div class='word-block'></div>").css("width", width)
+      $("#on-recording").append(new_div)
+    }
   };
 
   ///~~** PAGE FUNCTIONALITY FUNCTIONS **~~///
