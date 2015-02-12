@@ -9,20 +9,36 @@
   height: 200px;
   margin: 0 auto;
   display: block;
+  padding: 5px;
 }
 
 #on-recording {
   width: 80%;
-  height: 200px;
+  min-height: 200px;
   margin: 0 auto;
+  padding: 5px;
   display: block;
   background-color: #DEDEDE;
+  border: 1px solid #DEDEDE;
 }
 
-.word-block {
+span {
   background-color: #F1C5B8;
+  color: #F1C5B8;
   display: inline-block;
-  margin: 5px 5px -4px 5px;
-  height: 20px;
-  width: 10px;
+  margin-bottom: 5px;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.2s ease;
+}
+
+.canvasContainer {
+  width: 100%;
+  text-align: center;
+}
+
+canvas {
+  display: inline;
+  border: none;
 }

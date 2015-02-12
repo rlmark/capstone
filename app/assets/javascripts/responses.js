@@ -42,23 +42,24 @@ $( document ).ready(function() {
 
     // In the event of an error, this will get called
     recognition.onerror = function(e) {
-      $("#results").val(e.error + " \n" + e.message);
+      alert(e.error + " \n" + e.message);
     }
 
     // Generates transcription results
     recognition.onresult = function(event) {
       // note it accesses the mic, but not this on mobile.
       $("#results").val("inside recognition");
-      var interim_transcript = 'HI INTERIM TRANSCRIPT ';
+      var interim_transcript = '';
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          //final_transcript = capitalize(final_transcript);
+          final_transcript = capitalize(final_transcript) + " ";
           $('#results').val(final_transcript);
-          word_blocks(final_transcript);
+          final_word_blocks(final_transcript);
         } else {
           interim_transcript += event.results[i][0].transcript;
           $('#results').val(interim_transcript);
+          word_blocks($('#results').val());
         }
 
         //console.log("Interim " + interim_transcript);
@@ -84,14 +85,20 @@ $( document ).ready(function() {
 
   function word_blocks(string) {
     var word_array = string.split(" ")
-    for(var i = 1; i <= word_array.length; i++ ) {
-      console.log("this is word " + word_array[i])
-      var width = word_array[i].length * 5;
-      var new_div = $("<div class='word-block'></div>").css("width", width)
-      $("#on-recording").append(new_div)
-    }
+    string = "<span>" + string + "</span> ";
+    $("#on-recording").html(string);
   };
 
+  function final_word_blocks(string) {
+    var final = "";
+    var words = string.split(" ");
+    for(var i = 0; i < words.length; i++ ) {
+      var word = words[i];
+      final += "<span>" + word + "</span> "
+    }
+    $("#on-recording").html(final)
+    console.log(final);
+  }
   ///~~** PAGE FUNCTIONALITY FUNCTIONS **~~///
 
   // Controls visibility of submit button
