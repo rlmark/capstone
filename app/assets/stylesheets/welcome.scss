@@ -43,10 +43,12 @@
   color: #F1C5B8;
   border: 1px solid #F1C5B8;
   border-radius: 100%;
+  cursor:pointer;
 }
 .big-mic:active {
   color: coral;
   border: 1px solid coral;
+  cursor:pointer;
 }
 
 // the form where the bio gets written

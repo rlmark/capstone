@@ -18,7 +18,6 @@
   <% end %>
 </div>
 
-
 <script charset="utf-8">
 //
 // // REBECCA DON'T FORGET TO MOVE THIS TO A BETTER PLACE SOON
@@ -76,7 +75,7 @@ $(document).ready(function() {
       ctx.beginPath();
       // x position, y position, radius, unknown, arc in radians.
       ctx.arc(150, 150, average, 0, 2 * Math.PI, false);
-      ctx.lineWidth = 1; // super thick border
+      ctx.lineWidth = 1; // border for circle
       ctx.strokeStyle = '#FF4C4C'; // beautiful coral
       ctx.stroke();
     }
@@ -124,7 +123,7 @@ $(document).ready(function() {
         //canvasDrawSquare(10, 150, 40, 150-average*3);
 
         //Draw circle
-        canvasDrawCircle(average + 40);
+        canvasDrawCircle(average + 50);
       };
 
       // stream -> mediaSource -> analyser -> javascriptNode -> destination
