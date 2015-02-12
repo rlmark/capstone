@@ -10,6 +10,7 @@
   margin: 0 auto;
   display: block;
   padding: 5px;
+  line-height: 1.8;
 }
 
 #on-recording {
@@ -27,10 +28,6 @@ span {
   color: #F1C5B8;
   display: inline-block;
   margin-bottom: 5px;
-  -webkit-transition: background-color 500ms ease;
-  -moz-transition: background-color 500ms ease;
-  -o-transition: background-color 500ms ease;
-  transition: 0.2s ease;
 }
 
 .canvasContainer {

@@ -53,7 +53,7 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          final_transcript = capitalize(final_transcript) + " ";
+          final_transcript = capitalize(final_transcript);
           $('#results').val(final_transcript);
           final_word_blocks(final_transcript);
         } else {
@@ -96,8 +96,9 @@ $( document ).ready(function() {
       var word = words[i];
       final += "<span>" + word + "</span> "
     }
-    $("#on-recording").html(final)
-    console.log(final);
+    var blocks = $("#on-recording").html(final)
+    blocks.hide();
+    blocks.fadeIn();
   }
   ///~~** PAGE FUNCTIONALITY FUNCTIONS **~~///
 
