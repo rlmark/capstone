@@ -1,8 +1,18 @@
 class ResponsesController < ApplicationController
-  before_action :question_created, only: [:new, :create]
+#  before_action :question_created, only: [:new, :create]
 
   def new
-    @response = Response.new
+      @response = Response.new
+    if params[:random]
+      @question = Question.limit(1).order("RANDOM()")[0]
+      session[:question_id] = @question.id
+    else
+      if session[:question_id] == nil
+        redirect_to new_question_path
+      else
+        @question = Question.find(session[:question_id])
+      end
+    end
   end
 
   def create
