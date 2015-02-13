@@ -10,7 +10,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.question_mark_check
     if @question.save
       session[:question_id] = @question.id
       redirect_to new_talking_point_path
