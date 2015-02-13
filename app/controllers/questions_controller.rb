@@ -1,6 +1,7 @@
 #require 'byebug'
 class QuestionsController < ApplicationController
   def index
+    @question_matches
   end
 
   def new
@@ -10,13 +11,20 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question_matches = Question.search(@question.content, where: {private: false}).results
-    raise @question_matches.inspect
-    if @question.save
-      session[:question_id] = @question.id
-      redirect_to new_talking_point_path
+    @question_matches = Question.search(@question.content,
+    where: {private: false || nil},
+    fields: [:content],
+    highlight: true
+    ).results
+    if @question_matches.length >= 1
+      redirect_to questions_path
     else
-      render :new
+      if @question.save
+        session[:question_id] = @question.id
+        redirect_to new_talking_point_path
+      else
+        render :new
+      end
     end
   end
 
