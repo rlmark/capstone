@@ -8,7 +8,7 @@ class TalkingPointsController < ApplicationController
   end
 
   def create
-    session[:talking_points] ||= []
+    session[:talking_points] = []
     talking_points.each do |phrase|
       @talking_point = TalkingPoint.new(phrase: phrase, question_id: session[:question_id])
       if @talking_point.save
