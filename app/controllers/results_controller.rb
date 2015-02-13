@@ -7,7 +7,7 @@ class ResultsController < ApplicationController
     # The original question prompt
     @question = Question.find(@response.question_id)
     # The points that the user would like to make in their speech
-    @talking_points = @question.talking_points
+    @talking_points = talking_point_objects
     # Performs the elasticsearch NLP to see if talking_point was made
     @results = Result.search_talking_points(@talking_points, @response)
 
@@ -17,5 +17,13 @@ class ResultsController < ApplicationController
 
     @count = Result.filler_word_counter(@response.transcript)
     @sum = Result.total_filler_count(@count)
+  end
+
+  private
+
+  def talking_point_objects
+    session[:talking_points].collect do |id|
+      TalkingPoint.find(id)
+    end
   end
 end

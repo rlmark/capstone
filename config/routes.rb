@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
 
+  # Results controller view
   get 'results/show', to: 'results#show', as: :results
+
+  # Talking Points routes
+  resources :talking_points
 
   # Questions routes
   resources :questions
-  # get 'questions',    to: 'questions#index',    as: :questions
-  # get 'questions/new',      to: 'questions#new',      as: :new_question
-  # post 'questions',  to: 'questions#create'
-  # get 'question/:id',       to: 'questions#show',     as: :question
-  # patch 'question/:id',     to: 'questions#update'
-  # delete 'question/:id',    to: 'questions#destroy'
-  # get 'question/:id/edit', to: 'questions#edit',     as: :edit_question
 
   # Interview response routes
   get 'responses',          to: 'responses#index',   as: :responses

@@ -9,14 +9,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # if @question = Question.create(question_params)
     @question = Question.new(question_params)
     if @question.save
-      talking_points.each do |point|
-        TalkingPoint.create(phrase: point, question_id: @question.id)
-      end
       session[:question_id] = @question.id
-      redirect_to new_response_path
+      redirect_to new_talking_point_path
     else
       render :new
     end
@@ -36,11 +32,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def talking_points
-    talking_points = params["question"]["talking_point"]["phrase"]
-  end
-
   def question_params
-    params.require(:question).permit(:content, :private, :talking_points)
+    params.require(:question).permit(:content, :private)
   end
 end
