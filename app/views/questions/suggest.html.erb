@@ -1,5 +1,7 @@
-<h1>Duplicates checker</h1>
+<h1>Check for duplicate questions</h1>
 
 <% @question_matches.with_details.each do |record, details| %>
-  <li><%= link_to details[:highlight][:content].html_safe, suggestion_taken_path(record.id) %></li> 
+  <li><%= link_to details[:highlight][:content].html_safe, suggestion_taken_path(record.id) %></li>
 <%end %>
+
+<button name="button">Nope, mine's new</button>

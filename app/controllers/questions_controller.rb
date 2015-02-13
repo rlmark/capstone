@@ -17,12 +17,17 @@ class QuestionsController < ApplicationController
     if @question_matches.results.length >= 1
       redirect_to suggest_questions_path(original_question: @question.content)
     else
-      if @question.save
-        session[:question_id] = @question.id
-        redirect_to new_talking_point_path
-      else
-        render :new
-      end
+      save_and_redirect_the_unique(@question)
+    end
+  end
+
+  # Part of the create method 
+  def save_and_redirect_the_unique(question)
+    if question.save
+      session[:question_id] = question.id
+      redirect_to new_talking_point_path
+    else
+      render :new
     end
   end
 
