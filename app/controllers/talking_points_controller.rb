@@ -5,7 +5,9 @@ class TalkingPointsController < ApplicationController
   def new
     @talking_point = TalkingPoint.new
     if params[:random]
-      @question = Question.limit(1).order("RANDOM()")[0]
+      # gathering a random question for interview mode where public is enabled
+      counter = Question.where("private = ?", false).count
+      @question = Question.where("private = ?", false).offset(rand(counter)).first
       session[:question_id] = @question.id
     else
       @question = Question.find(session[:question_id])

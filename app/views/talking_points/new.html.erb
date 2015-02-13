@@ -1,9 +1,10 @@
-<h1>Add some talking points</h1>
-<h2><%= @question.content %></h2>
+<h1><%= @question.content %></h1>
+<h2>Add some talking points</h2>
 
 <%= form_for @talking_point do |f| %>
   <div class="form-group">
     <%= f.label :phrase, "Add a phrase or word." %>
+    <%= render "shared/error_messages", obj: @talking_point, col: :phrase  %>
     <input type="text" name="talking_point[phrase][]" id="talking_point_phrase" class="form-control spaced simple-form">
 
     <div id="morePoints"><!-- This is where more text fields are added -->
