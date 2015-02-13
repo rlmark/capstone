@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question_matches = Question.search(@question.content, where: {private: false}).results
+    raise @question_matches.inspect
     if @question.save
       session[:question_id] = @question.id
       redirect_to new_talking_point_path
