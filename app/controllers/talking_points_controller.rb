@@ -3,8 +3,13 @@ class TalkingPointsController < ApplicationController
   end
 
   def new
-    @question = Question.find(session[:question_id])
     @talking_point = TalkingPoint.new
+    if params[:random]
+      @question = Question.limit(1).order("RANDOM()")[0]
+      session[:question_id] = @question.id
+    else
+      @question = Question.find(session[:question_id])
+    end
   end
 
   def create
