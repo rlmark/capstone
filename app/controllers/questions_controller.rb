@@ -1,7 +1,8 @@
 #require 'byebug'
 class QuestionsController < ApplicationController
   def index
-    @question_matches
+    @question = Question.find(params[:id])
+    search_questions(@question.content)
   end
 
   def new
@@ -11,13 +12,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question_matches = Question.search(@question.content,
-    where: {private: false || nil},
-    fields: [:content],
-    highlight: true
-    ).results
-    if @question_matches.length >= 1
-      redirect_to questions_path
+    search_questions(@question.content)
+    # @question_matches is an instance var gen by search_questions function below
+    if @question_matches.results.length >= 1
+      redirect_to suggest_questions_path(original_question: @question.content)
     else
       if @question.save
         session[:question_id] = @question.id
@@ -40,9 +38,27 @@ class QuestionsController < ApplicationController
   def edit
   end
 
+  # When a new question is entered, but similar questions already exist, go here
+  def suggest
+    search_questions(params[:original_question])
+  end
+
+  def suggestion_taken
+    session[:question_id] = params[:id]
+    redirect_to new_talking_point_path
+  end
+
   private
 
   def question_params
     params.require(:question).permit(:content, :private)
+  end
+
+  def search_questions(content)
+    @question_matches = Question.search(content,
+    where: {private: false || nil},
+    fields: [:content],
+    highlight: true
+    )
   end
 end
