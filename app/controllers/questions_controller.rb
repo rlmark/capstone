@@ -15,13 +15,13 @@ class QuestionsController < ApplicationController
     search_questions(@question.content)
     # @question_matches is an instance var gen by search_questions function below
     if @question_matches.results.length >= 1
-      redirect_to suggest_questions_path(original_question: @question.content)
+      redirect_to suggest_questions_path(original_question: @question.content )
     else
       save_and_redirect_the_unique(@question)
     end
   end
 
-  # Part of the create method 
+  # Part of the create method
   def save_and_redirect_the_unique(question)
     if question.save
       session[:question_id] = question.id

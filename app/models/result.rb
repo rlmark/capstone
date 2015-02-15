@@ -3,9 +3,12 @@ class Result < ActiveRecord::Base
   def self.search_talking_points(talking_points, response)
     talking_points.collect do |point|
       Response.search( point.phrase,
+      ##operator: "or", ## This might widen the search too much
       where: {id: response.id},
       fields: [:transcript],
-      highlight: true
+      "fuzziness" => 2, # I have no clue what this is doing. 
+      misspellings: true,
+      highlight: true,
       )
     end
   end

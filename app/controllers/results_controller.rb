@@ -8,8 +8,15 @@ class ResultsController < ApplicationController
     @question = Question.find(@response.question_id)
     # The points that the user would like to make in their speech
     @talking_points = talking_point_objects
-    # Performs the elasticsearch NLP to see if talking_point was made
+    # Performs elasticsearch to see if talking_point was made
     @results = Result.search_talking_points(@talking_points, @response)
+    #raise @results.inspect
+
+    ## limiting results by confidence score
+    # @results.collect do |result|
+    #   if result.response
+    #
+    # end
 
     @filler_words = Result.search_filler_words(@response)
 
