@@ -1,15 +1,19 @@
-<h1>Record an interview</h1>
-<h2>Your question: <%= @question.content %></h2>
+<h1>Your question: <%= @question.content %></h1>
+<h2>Record an interview</h2>
 
+<!-- Mic button which starts recording session -->
+<i id="startRecording" class="big-mic fa fa-microphone fa-4x "></i>
+
+<!-- This is the canvas which response to sound -->
 <div class="canvasContainer">
   <canvas id="canvas" width="300" height="300"></canvas>
 </div>
 
-<i id="startRecording" class="big-mic fa fa-microphone fa-4x "></i>
-
+<!-- This contains the abstracted version of user's words-->
 <div id="on-recording">
 </div>
 
+<!-- This is actual transcript -->
 <div id="recording">
   <%= form_for @response do |f| %>
     <%= f.text_area :transcript, id: "results", value: "Transcript goes here" %>

@@ -48,11 +48,13 @@ class QuestionsController < ApplicationController
     search_questions(params[:original_question])
   end
 
+  # if a user takes the suggestion of preexisting question.
   def suggestion_taken
     session[:question_id] = params[:id]
     redirect_to new_talking_point_path
   end
 
+  # if user says their question is indeed unique, this enters it in db and redirects
   def verified
     @question = Question.new(content: params[:verified], private: params[:private])
     save_and_redirect_the_unique(@question)
