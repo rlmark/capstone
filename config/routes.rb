@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :questions
   get 'duplicate-questions', to: 'questions#suggest', as: :suggest_questions
   get 'question-selected/:id', to: 'questions#suggestion_taken', as: :suggestion_taken
+  post 'verified-question', to: 'questions#verified', as: :verified_question
 
   # Interview response routes
   get 'responses',          to: 'responses#index',   as: :responses
