@@ -48,6 +48,9 @@ module Searchkick
       padding = [options[:padding].to_i, 0].max
       offset = options[:offset] || (page - 1) * per_page + padding
 
+      # min score option added
+      min_score = options[:min_score] || 0
+
       # model and eagar loading
       load = options[:load].nil? ? true : options[:load]
 
@@ -239,7 +242,8 @@ module Searchkick
         payload = {
           query: payload,
           size: per_page,
-          from: offset
+          from: offset,
+          min_score: min_score
         }
         payload[:explain] = options[:explain] if options[:explain]
 
