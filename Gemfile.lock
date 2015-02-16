@@ -1,3 +1,11 @@
+PATH
+  remote: vendor/searchkick
+  specs:
+    searchkick (0.8.5)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -194,10 +202,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    searchkick (0.8.5)
-      activemodel
-      elasticsearch (>= 1)
-      hashie
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -257,7 +261,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  searchkick
+  searchkick!
   simplecov
   spring
   therubyracer

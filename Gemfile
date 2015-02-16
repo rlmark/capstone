@@ -39,7 +39,7 @@ gem 'font-awesome-rails'
 # gem 'elasticsearch-model'
 # gem 'elasticsearch-rails'
 
-gem 'searchkick'
+gem 'searchkick', path: "vendor/searchkick"
 
 group :development do
   gem 'better_errors'
