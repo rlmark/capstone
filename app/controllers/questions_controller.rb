@@ -46,6 +46,7 @@ class QuestionsController < ApplicationController
   # When a new question is entered, but similar questions already exist, go here
   def suggest
     search_questions(params[:original_question])
+    raise @question_matches.inspect
   end
 
   # if a user takes the suggestion of preexisting question.
@@ -70,7 +71,9 @@ class QuestionsController < ApplicationController
     @question_matches = Question.search(content,
     where: {private: false || nil},
     fields: [:content],
-    highlight: true
+    highlight: true,
+    operator: "or",
+    "min_score" => 0.05,
     )
   end
 end

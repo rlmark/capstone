@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   validates :content, presence: true, length: {minimum: 3}
 
   searchkick highlight: [:content]
-  
+
   def search_data
     as_json only: [:content]
   end
