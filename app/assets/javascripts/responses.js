@@ -68,7 +68,7 @@ $( document ).ready(function() {
     }
 
     // Ends the recording session
-    $('#endRecording').click(function(){
+    $('.endRecording').click(function(){
       console.log("End recording");
       recognition.stop();
     });

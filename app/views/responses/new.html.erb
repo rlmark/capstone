@@ -5,11 +5,11 @@
 <i id="startRecording" class="big-mic fa fa-microphone fa-4x" data-toggle="modal" data-target="#recordingModal"></i>
 
 <!--MODAL STARTS HERE-->
-<div class="modal fade" id="recordingModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="recordingModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-keyboard="false" data-backdrop="static" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header"><!--Header-->
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <button type="button" class="close endRecording" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
         <p><%= @question.content %></p>
       </div>
 
@@ -22,7 +22,7 @@
       <div id="on-recording"></div>
 
       <div class="modal-footer"><!--Footer-->
-        <button name="end-recording" id="endRecording" class="btn btn-default" data-dismiss="modal">Close and end recording</button>
+        <button name="end-recording" class="btn btn-default endRecording" data-dismiss="modal">Close and end recording</button>
       </div>
     </div>
   </div>
@@ -71,25 +71,8 @@ $(document).ready(function() {
       return document.getElementById('canvas');
     }
 
-    // This gets called when drawwing square for each side.
-    function canvasDrawLine(oPosX, oPosY, fPosX, fPosY) {
-      var ctx = getCanvas().getContext('2d');
-      ctx.beginPath();
-      ctx.moveTo(oPosX, oPosY);
-      ctx.lineTo(fPosX, fPosY);
-      ctx.stroke();
-    }
-
-    // Drawing the actual square shape
-    function canvasDrawSquare(ulPosX, ulPosY, lrPosX, lrPosY) {
-      canvasDrawLine(ulPosX, ulPosY, ulPosX, lrPosY);
-      canvasDrawLine(ulPosX, lrPosY, lrPosX, lrPosY);
-      canvasDrawLine(lrPosX, lrPosY, lrPosX, ulPosY);
-      canvasDrawLine(lrPosX, ulPosY, ulPosX, ulPosY);
-    }
-
     // Drawing a circle
-    function canvasDrawCircle(average){
+    function canvasDrawCircle(average) {
       var ctx = canvas.getContext('2d');
       ctx.beginPath();
       // x position, y position, radius, unknown, arc in radians.
@@ -99,14 +82,20 @@ $(document).ready(function() {
       ctx.stroke();
     }
 
+    // Drawing the mic to the canvas
+    function canvasDrawMic() {
+      var ctx = canvas.getContext('2d');
+      mic = new Image();
+      mic.src = "<%= asset_path('mic_icon_sml.png') %>";
+      mic.onload = function() {
+        ctx.drawImage(mic,130,120);
+      };
+    }
+
     function canvasInitialize(width, height) {
-      // Set canvas parameters
+      // Sets canvas parameters
       getCanvas().width = width;
       getCanvas().height = height;
-
-      // Outline of canvas
-      //getCanvas().getContext('2d').clearRect(0,0,width,height);
-      //canvasDrawSquare(0,0,width,height);
     }
 
     function onSuccess(stream) {
@@ -141,8 +130,10 @@ $(document).ready(function() {
         // By changing the multiplication, you can change relative height of bar
         //canvasDrawSquare(10, 150, 40, 150-average*3);
 
-        //Draw circle
-        canvasDrawCircle(average + 50);
+        //Draw circle (the integer is the base radius)
+        canvasDrawCircle(average/1.5 + 50);
+
+        canvasDrawMic();
       };
 
       // stream -> mediaSource -> analyser -> javascriptNode -> destination
