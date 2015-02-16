@@ -56,7 +56,9 @@ $( document ).ready(function() {
           final_transcript = capitalize(final_transcript);
           $('#results').val(final_transcript);
           final_word_blocks(final_transcript);
+          done_loading();
         } else {
+          loading_icon();
           interim_transcript += event.results[i][0].transcript;
           $('#results').val(interim_transcript);
           word_blocks($('#results').val());
@@ -106,6 +108,16 @@ $( document ).ready(function() {
   function submit_display() {
     console.log("The hide function is here!")
     $("#submit").toggle();
+  }
+
+  // Controlls spinning icon when final transcript is not done loading
+  function loading_icon() {
+    $("#startRecording").removeClass("fa-microphone").addClass("fa-cog fa-spin")
+  }
+
+  // Sets the spinning icon back when done loading
+  function done_loading() {
+    $("#startRecording").removeClass("fa-cog fa-spin").addClass("fa-microphone")
   }
 
 }); // Ends the document.ready page load function
