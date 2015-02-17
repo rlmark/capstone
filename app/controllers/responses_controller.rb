@@ -15,7 +15,8 @@ class ResponsesController < ApplicationController
     @response.question_id = session[:question_id]
     if @response.save
       Response.searchkick_index.refresh # Forces a reindex upon creation
-      redirect_to results_path(response_id: @response.id)
+      session[:response_id] = @response.id
+      redirect_to results_path
     else
       render :new
     end

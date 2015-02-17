@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def interview_response_created
-    if params[:response_id] == nil
+    if session[:response_id] == nil
       redirect_to root_path
       # eventually redirect to dash path
     end

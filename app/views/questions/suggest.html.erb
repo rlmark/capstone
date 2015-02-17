@@ -1,7 +1,9 @@
 <h1>Check for duplicate questions</h1>
 
-<% @question_matches.with_details.each do |record, details| %>
-  <li><%= link_to details[:highlight][:content].html_safe, suggestion_taken_path(record.id) %></li>
-<%end %>
+<div class="suggestion-list">
+  <% @question_matches.with_details.each do |record, details| %>
+    <li><%= link_to details[:highlight][:content].html_safe, suggestion_taken_path(record.id) %></li>
+  <%end %>
+</div>
 
 <%= button_to "Nope, mine's new", verified_question_path(verified: params[:original_question], private: params[:private]), method: :post, class: "btn btn-default"  %>

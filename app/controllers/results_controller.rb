@@ -3,7 +3,7 @@ class ResultsController < ApplicationController
 
   def show
     # This is the preceding user input
-    @response = Response.find(params[:response_id])
+    @response = Response.find(session[:response_id])
     # The original question prompt
     @question = Question.find(@response.question_id)
     # The points that the user would like to make in their speech
