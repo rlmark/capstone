@@ -1,8 +1,3 @@
-<h1>Your question: <%= @question.content %></h1>
-<h2>Record an interview</h2>
-<!-- Mic button which starts recording session -->
-<i id="startRecording" class="big-mic fa fa-microphone fa-4x" data-toggle="modal" data-target="#recordingModal"></i>
-
 <!--MODAL STARTS HERE-->
 <div class="modal fade" id="recordingModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-keyboard="false" data-backdrop="static" >
   <div class="modal-dialog">
@@ -27,14 +22,27 @@
   </div>
 </div><!--END MODAL-->
 
-<!-- This is the actual transcript -->
-<div id="recording">
-  <%= form_for @response do |f| %>
-    <%= f.text_area :transcript, id: "results", value: "Your transcript will go here" %>
-    <%= render "shared/error_messages", obj: @response, col: :transcript %>
-    <%= f.submit "Submit", id: "submit", class: "btn btn-default" %>
-  <% end %>
+<!--NO MODAL-->
+<div class="pageContainer">
+  <h1>Your question: <%= @question.content %></h1>
+  <!-- <h2>Record</h2> -->
+
+  <!-- Mic button which starts recording session -->
+  <i id="startRecording" class="big-mic fa fa-microphone fa-4x" data-toggle="modal" data-target="#recordingModal"></i>
+
+  <!-- This is the actual transcript -->
+  <div id="recording">
+    <%= form_for @response do |f| %>
+      <%= f.text_area :transcript, id: "results", value: "Your transcript will go here" %>
+      <%= render "shared/error_messages", obj: @response, col: :transcript %>
+      <%= f.submit "Submit", id: "submit", class: "btn btn-default" %>
+    <% end %>
+  </div>
 </div>
+
+
+
+
 
 <script charset="utf-8">
 //
