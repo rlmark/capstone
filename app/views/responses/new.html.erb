@@ -8,9 +8,9 @@
       </div>
 
       <!-- This is the canvas which response to sound -->
-      <div class="canvasContainer">
+      <!-- <div class="canvasContainer">
         <canvas id="canvas" width="300" height="300"></canvas>
-      </div>
+      </div> -->
 
       <!-- This contains the abstracted version of user's words-->
       <div id="on-recording"></div>
@@ -49,123 +49,123 @@
 // // REBECCA DON'T FORGET TO MOVE THIS TO A BETTER PLACE SOON
 // // AND/OR INTEGRATE WITH TRANSCRIPTION CLICK FUNCITONS
 //
-$(document).ready(function() {
-
-  var contextClass = (window.AudioContext ||
-    window.webkitAudioContext ||
-    window.mozAudioContext ||
-    window.oAudioContext ||
-    window.msAudioContext);
-    if (contextClass) {
-      // Web Audio API is available.
-      var context = new contextClass();
-    } else {
-      // Web Audio API is not available. Ask the user to use a supported browser.
-      alert("Please switch to Google Chrome v. 25 and up or Safari v. 7.1 and up.")
-    }
-
-    function getAverageVolume(array) {
-      var values = 0;
-      // get all the frequency??? amplitudes
-      for (var i = 0; i < array.length; i++) {
-        values += array[i];
-      }
-      return values / (array.length);
-    }
-
-    // Get canvas
-    function getCanvas() {
-      return document.getElementById('canvas');
-    }
-
-    // Drawing a circle
-    function canvasDrawCircle(average) {
-      var ctx = canvas.getContext('2d');
-      ctx.beginPath();
-      // x position, y position, radius, unknown, arc in radians.
-      ctx.arc(150, 150, average, 0, 2 * Math.PI, false);
-      ctx.lineWidth = 1; // border for circle
-      ctx.strokeStyle = '#FF4C4C'; // beautiful coral
-      ctx.stroke();
-    }
-
-    // Drawing the mic to the canvas
-    function canvasDrawMic() {
-      var ctx = canvas.getContext('2d');
-      mic = new Image();
-      mic.src = "<%= asset_path('mic_icon_sml.png') %>";
-      mic.onload = function() {
-        ctx.drawImage(mic,130,120);
-      };
-    }
-
-    function canvasInitialize(width, height) {
-      // Sets canvas parameters
-      getCanvas().width = width;
-      getCanvas().height = height;
-    }
-
-    function onSuccess(stream) {
-      var context = new webkitAudioContext();
-      var mediaStreamSource = context.createMediaStreamSource(stream);
-
-      var analyser = context.createAnalyser();
-      analyser.smoothingTimeConstant = 0.7;
-      analyser.fftSize = 1024;
-
-      // creates ScriptProcessorNode w allows generation, processing, or analyzing of audio
-      var javascriptNode = context.createScriptProcessor(2048, 1, 1);
-
-      javascriptNode.onaudioprocess = function(e) {
-
-        // could this eventually be used to collect a recording???
-        //var sample = e.inputBuffer.getChannelData(0);
-
-        // get the average, bincount is fftsize / 2
-        var array =  new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(array);
-
-        // calculate average volume
-        var average = getAverageVolume(array)
-
-        // print value out (Not including this for now)
-        // log(average);
-
-        // create canvas
-        canvasInitialize(300,300);
-
-        //Draw circle (the integer is the base radius)
-        canvasDrawCircle(average/1.5 + 50);
-
-        canvasDrawMic();
-
-      };
-
-      // stream -> mediaSource -> analyser -> javascriptNode -> destination
-      mediaStreamSource.connect(analyser);
-      analyser.connect(javascriptNode);
-      javascriptNode.connect(context.destination);
-    }
-
-    function onError() {
-      alert('Error');
-    }
-
-    //var initializedContext = false;
-    //$("#startRecording").click(
-      //function() {
-        //if (!initializedContext) {
-          if(navigator.getUserMedia) {
-            navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
-          } else if(navigator.webkitGetUserMedia) {
-            navigator.webkitGetUserMedia({video: false, audio: true}, onSuccess, onError);
-          }
-          //initializedContext = true
-        //}
-      //}
-    )
-
-
+// $(document).ready(function() {
+//
+//   var contextClass = (window.AudioContext ||
+//     window.webkitAudioContext ||
+//     window.mozAudioContext ||
+//     window.oAudioContext ||
+//     window.msAudioContext);
+//     if (contextClass) {
+//       // Web Audio API is available.
+//       var context = new contextClass();
+//     } else {
+//       // Web Audio API is not available. Ask the user to use a supported browser.
+//       alert("Please switch to Google Chrome v. 25 and up or Safari v. 7.1 and up.")
+//     }
+//
+//     function getAverageVolume(array) {
+//       var values = 0;
+//       // get all the frequency??? amplitudes
+//       for (var i = 0; i < array.length; i++) {
+//         values += array[i];
+//       }
+//       return values / (array.length);
+//     }
+//
+//     // Get canvas
+//     function getCanvas() {
+//       return document.getElementById('canvas');
+//     }
+//
+//     // Drawing a circle
+//     function canvasDrawCircle(average) {
+//       var ctx = canvas.getContext('2d');
+//       ctx.beginPath();
+//       // x position, y position, radius, unknown, arc in radians.
+//       ctx.arc(150, 150, average, 0, 2 * Math.PI, false);
+//       ctx.lineWidth = 1; // border for circle
+//       ctx.strokeStyle = '#FF4C4C'; // beautiful coral
+//       ctx.stroke();
+//     }
+//
+//     // Drawing the mic to the canvas
+//     function canvasDrawMic() {
+//       var ctx = canvas.getContext('2d');
+//       mic = new Image();
+//       mic.src = "<%= asset_path('mic_icon_sml.png') %>";
+//       mic.onload = function() {
+//         ctx.drawImage(mic,130,120);
+//       };
+//     }
+//
+//     function canvasInitialize(width, height) {
+//       // Sets canvas parameters
+//       getCanvas().width = width;
+//       getCanvas().height = height;
+//     }
+//
+//     function onSuccess(stream) {
+//       var context = new webkitAudioContext();
+//       var mediaStreamSource = context.createMediaStreamSource(stream);
+//
+//       var analyser = context.createAnalyser();
+//       analyser.smoothingTimeConstant = 0.7;
+//       analyser.fftSize = 1024;
+//
+//       // creates ScriptProcessorNode w allows generation, processing, or analyzing of audio
+//       var javascriptNode = context.createScriptProcessor(2048, 1, 1);
+//
+//       javascriptNode.onaudioprocess = function(e) {
+//
+//         // could this eventually be used to collect a recording???
+//         //var sample = e.inputBuffer.getChannelData(0);
+//
+//         // get the average, bincount is fftsize / 2
+//         var array =  new Uint8Array(analyser.frequencyBinCount);
+//         analyser.getByteFrequencyData(array);
+//
+//         // calculate average volume
+//         var average = getAverageVolume(array)
+//
+//         // print value out (Not including this for now)
+//         // log(average);
+//
+//         // create canvas
+//         canvasInitialize(300,300);
+//
+//         //Draw circle (the integer is the base radius)
+//         canvasDrawCircle(average/1.5 + 50);
+//
+//         canvasDrawMic();
+//
+//       };
+//
+//       // stream -> mediaSource -> analyser -> javascriptNode -> destination
+//       mediaStreamSource.connect(analyser);
+//       analyser.connect(javascriptNode);
+//       javascriptNode.connect(context.destination);
+//     }
+//
+//     function onError() {
+//       alert('Error');
+//     }
+//
+//     //var initializedContext = false;
+//     //$("#startRecording").click(
+//       //function() {
+//         //if (!initializedContext) {
+//           if(navigator.getUserMedia) {
+//             navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
+//           } else if(navigator.webkitGetUserMedia) {
+//             navigator.webkitGetUserMedia({video: false, audio: true}, onSuccess, onError);
+//           }
+//           //initializedContext = true
+//         //}
+//       //}
+//     )
+//
+//
 
   // THIS IS FOR RECORDING, MAYBE EVENTUALLY
   // function record() {
