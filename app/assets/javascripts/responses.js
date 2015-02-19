@@ -53,7 +53,7 @@ $( document ).ready(function() {
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
-          final_transcript = capitalize(final_transcript);
+          final_transcript = capitalize(final_transcript) + " ";
           $('#results').val(final_transcript);
           final_word_blocks(final_transcript);
           done_loading();
