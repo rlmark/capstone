@@ -4,12 +4,15 @@
 // @import "font-awesome-sprockets";
 // @import "font-awesome";
 
-// Non modal styling
+// NON MODAL STYLING //
+// ***************** //
+
 .pageContainer {
   width: 50%;
   min-width: 300px;
   margin: 0 auto;
 }
+
 
 // Styles the pages for recording a response
 #results {
@@ -33,7 +36,53 @@
   margin-top: 20px;
 }
 
-//MODAL STYLING is below
+
+// TIMER STYLING //
+
+.timer-holder {
+  height: 300px;
+}
+
+
+.pie{
+    width: 250px;
+    height: 250px;
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    background-color: #F1C5B8;
+    border: 2px solid #F1C5B8;
+    float: left;
+    margin: 2em;
+  .block{
+    position:absolute;
+    background:#fff;
+    width:230px;
+    height:230px;
+    display:block;
+    border-radius:50%;
+    top:8px;
+    left:8px;
+  }
+
+}
+#time{
+  font-size:3em;
+  position:absolute;
+  top:35%;
+  left:43%;
+  color:lighten(#000,60%);
+}
+.degree{
+  /*90 + ( 360 * .1 )*/
+      background-image:
+        linear-gradient(90deg, transparent 50%, white 50%),
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+
+
+//MODAL STYLING//
+// *********** //
 
 // this is inside the modal, it's the grey abstraction of text
 #on-recording {
@@ -47,7 +96,7 @@
 }
 
 // This is the text abstracted in modal
-span {
+#on-recording span {
   background-color: #F1C5B8;
   color: #F1C5B8;
   display: inline-block;

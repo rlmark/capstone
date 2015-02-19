@@ -120,4 +120,37 @@ $( document ).ready(function() {
     $("#startRecording").removeClass("fa-cog fa-spin").addClass("fa-microphone")
   }
 
+  // ~~** TIMER **~~ //
+  // writes seconds to clock face
+  var count = parseInt($('#time').text());
+
+  // increments seconds
+  var myCounter = setInterval(function () {
+    count+=1;
+    $('#time').html(count);
+    // this stops it from showing bar for more than total time
+    if (count <= totaltime) {
+      update(count);
+    }
+  //if(count==totaltime)
+  //clearInterval(myCounter);
+  }, 1000);
+
+  // total time is set by user
+  var totaltime = 10;
+
+  // this rotates clock face
+  function update(percent){
+    var deg;
+    if(percent < (totaltime/2)){
+      deg = 90 + (360*percent/totaltime);
+      $('.pie').css('background-image', 'linear-gradient('+deg+'deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)'
+                  );
+    } else if(percent >= (totaltime/2)){
+      deg = -90 + (360*percent/totaltime);
+      $('.pie').css('background-image', 'linear-gradient('+deg+'deg, transparent 50%, #F1C5B8 50%),linear-gradient(90deg, white 50%, transparent 50%)'
+                  );
+    }
+  } // ends timer update function
+
 }); // Ends the document.ready page load function
