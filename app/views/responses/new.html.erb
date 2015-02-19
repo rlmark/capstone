@@ -113,9 +113,12 @@ $(document).ready(function() {
       analyser.smoothingTimeConstant = 0.7;
       analyser.fftSize = 1024;
 
+      // creates ScriptProcessorNode w allows generation, processing, or analyzing of audio
       var javascriptNode = context.createScriptProcessor(2048, 1, 1);
 
       javascriptNode.onaudioprocess = function(e) {
+
+        // could this eventually be used to collect a recording???
         //var sample = e.inputBuffer.getChannelData(0);
 
         // get the average, bincount is fftsize / 2
@@ -131,16 +134,11 @@ $(document).ready(function() {
         // create canvas
         canvasInitialize(300,300);
 
-        // draw green bar
-        getCanvas().getContext('2d').strokeStyle='#000000';
-        getCanvas().getContext('2d').strokeStyle='#00ff00';
-        // By changing the multiplication, you can change relative height of bar
-        //canvasDrawSquare(10, 150, 40, 150-average*3);
-
         //Draw circle (the integer is the base radius)
         canvasDrawCircle(average/1.5 + 50);
 
         canvasDrawMic();
+
       };
 
       // stream -> mediaSource -> analyser -> javascriptNode -> destination
@@ -153,11 +151,21 @@ $(document).ready(function() {
       alert('Error');
     }
 
-    if(navigator.getUserMedia) {
-      navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
-    } else if(navigator.webkitGetUserMedia) {
-      navigator.webkitGetUserMedia({video: false, audio: true}, onSuccess, onError);
-    }
+    //var initializedContext = false;
+    //$("#startRecording").click(
+      //function() {
+        //if (!initializedContext) {
+          if(navigator.getUserMedia) {
+            navigator.getUserMedia({video: false, audio: true}, onSuccess, onError);
+          } else if(navigator.webkitGetUserMedia) {
+            navigator.webkitGetUserMedia({video: false, audio: true}, onSuccess, onError);
+          }
+          //initializedContext = true
+        //}
+      //}
+    )
+
+
 
   // THIS IS FOR RECORDING, MAYBE EVENTUALLY
   // function record() {
