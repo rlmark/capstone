@@ -73,6 +73,7 @@ $( document ).ready(function() {
     $('.endRecording').click(function(){
       console.log("End recording");
       recognition.stop();
+      clearTimer();
     });
 
   } // Ends the else block if window contains webkit Speech API
@@ -153,4 +154,8 @@ $( document ).ready(function() {
     }
   } // ends timer update function
 
+  function clearTimer() {
+    count = 0
+    $('#time').html(count);
+  }
 }); // Ends the document.ready page load function
