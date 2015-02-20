@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header"><!--Header-->
         <button type="button" class="close endRecording" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-        <p><%= @question.content %></p>
+        <p class="modal-question"><%= @question.content %></p>
       </div>
 
       <!-- This is the canvas which response to sound -->
@@ -12,6 +12,7 @@
         <canvas id="canvas" width="300" height="300"></canvas>
       </div> -->
 
+      <!--This is the timer-->
       <div class="timer-holder">
         <div class="pie degree">
           <span class="block"></span>

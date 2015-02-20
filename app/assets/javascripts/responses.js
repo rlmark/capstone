@@ -158,7 +158,7 @@ $( document ).ready(function() {
   // clears out clock and writes 0 val to screen
   function clearTimer() {
     clearInterval(myCounter);
-    count = 0;
-    $('#time').html(count);
+    // count = 0;
+    // $('#time').html(count);
   }
 }); // Ends the document.ready page load function
