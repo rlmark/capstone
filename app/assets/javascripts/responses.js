@@ -24,14 +24,13 @@ $( document ).ready(function() {
     // Prompts user to allow mic, starts the actual recording
     $('#startRecording').click(function(){
       recognition.start();
-      $('#results').val("Inside click handler");
+      startTimer();
     });
 
     // Fires when recognition.start is called
     recognition.onstart = function() {
       console.log("I'm starting.");
       recognizing = true;
-      $('#results').val("Inside start function");
     }
 
     // This gets run after recognition.stop processes
@@ -48,7 +47,6 @@ $( document ).ready(function() {
     // Generates transcription results
     recognition.onresult = function(event) {
       // note it accesses the mic, but not this on mobile.
-      $("#results").val("inside recognition");
       var interim_transcript = '';
       for (var i = event.resultIndex; i < event.results.length; ++ i) {
         if (event.results[i].isFinal) {
@@ -63,9 +61,6 @@ $( document ).ready(function() {
           $('#results').val(interim_transcript);
           word_blocks($('#results').val());
         }
-
-        //console.log("Interim " + interim_transcript);
-        //console.log("Final " + final_transcript);
       }
     }
 
@@ -87,6 +82,7 @@ $( document ).ready(function() {
   };
 
   function word_blocks(string) {
+    var interim = ""
     var word_array = string.split(" ")
     string = "<span>" + string + "</span> ";
     $("#on-recording").html(string);
@@ -125,17 +121,22 @@ $( document ).ready(function() {
   // writes seconds to clock face
   var count = parseInt($('#time').text());
 
+  var myCounter;
+
   // increments seconds
-  var myCounter = setInterval(function () {
-    count+=1;
-    $('#time').html(count);
-    // this stops it from showing bar for more than total time
-    if (count <= totaltime) {
-      update(count);
-    }
-  //if(count==totaltime)
-  //clearInterval(myCounter);
-  }, 1000);
+  function startTimer() {
+    myCounter = setInterval(function () {
+      count+=1;
+      $('#time').html(count);
+      // this stops it from showing bar for more than total time
+      if (count <= totaltime) {
+        update(count);
+      }
+    //if(count==totaltime)
+    //clearInterval(myCounter); // stops counter altogether
+    }, 1000);
+    console.log(myCounter)
+  }
 
   // total time is set by user
   var totaltime = 10;
@@ -154,8 +155,10 @@ $( document ).ready(function() {
     }
   } // ends timer update function
 
+  // clears out clock and writes 0 val to screen
   function clearTimer() {
-    count = 0
+    clearInterval(myCounter);
+    count = 0;
     $('#time').html(count);
   }
 }); // Ends the document.ready page load function
