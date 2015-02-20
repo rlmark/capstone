@@ -22,9 +22,34 @@ $( document ).ready(function() {
     recognition.interimResults = true;
 
     // Prompts user to allow mic, starts the actual recording
-    $('#startRecording').click(function(){
-      recognition.start();
-      startTimer();
+    // Starts and pauses timer, pause the recording
+    var playIconHtml = "<i class='fa fa-play fa-2x'></i>";
+    var pauseIconHtml = "<i class='fa fa-pause fa-2x'></i>";
+    $('#play').click(function(){
+      var currentMode = $(this).attr('currentMode');
+      if (currentMode == "play") {
+        recognition.start();
+        startTimer();
+        $(this).attr('currentMode','pause');
+        $(this).html(pauseIconHtml);
+      }
+      else {
+        recognition.stop();
+        pauseTimer();
+        $(this).attr('currentMode','play');
+        $(this).html(playIconHtml);
+      }
+    });
+
+    $('#reset').click(function(){
+      recognition.stop();
+      $('#on-recording').html("");
+      $('#results').html("");
+      pauseTimer();
+      resetTimer();
+      $('#play').attr('currentMode','play');
+      $('#play').html(playIconHtml);
+      final_transcript = "";
     });
 
     // Fires when recognition.start is called
@@ -139,7 +164,7 @@ $( document ).ready(function() {
   }
 
   // total time is set by user
-  var totaltime = 10;
+  var totaltime = 100;
 
   // this rotates clock face
   function update(percent){
@@ -156,9 +181,12 @@ $( document ).ready(function() {
   } // ends timer update function
 
   // clears out clock and writes 0 val to screen
-  function clearTimer() {
+  function pauseTimer() {
     clearInterval(myCounter);
-    // count = 0;
-    // $('#time').html(count);
+  }
+
+  function resetTimer() {
+    count = 0;
+    $('#time').html(count);
   }
 }); // Ends the document.ready page load function
