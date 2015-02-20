@@ -16,7 +16,7 @@
 
   <!-- result found: searchkick method gets elasticsearch result and activerecord object -->
   <% result.with_details.each do |record, detail| %>
-    <i class="fa fa-check-circle-o fa-2x"></i> <%= detail[:highlight][:transcript].html_safe %>
+    <i class="fa fa-check-circle-o fa-2x"></i> <span class="highlight"><%= detail[:highlight][:transcript].html_safe %></span>
   <% end %>
 
   <hr>
@@ -30,7 +30,7 @@
     <% next %>
   <% end %>
   <h4><%= @count.values[i] %> <%= filler_word %></h4>
-  <%= @highlighted_transcripts[i] %>
+  <span class="highlight"><%= @highlighted_transcripts[i] %></span>
 <% end %>
 
 <%# @highlighted_transcripts.each do |transcript| %>

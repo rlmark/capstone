@@ -14,20 +14,23 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @category_ids = params[:question][:category_ids]
     search_questions(@question.content)
-    # @question_matches is an instance var gen by search_questions function below
+    # @question_matches is an instance var exposed by search_questions function below
     if @question_matches.results.length >= 1
-      redirect_to suggest_questions_path(original_question: @question.content, private: @question.private)
+      redirect_to suggest_questions_path(original_question: @question.content, private: @question.private, category_ids: @category_ids)
     else
-      save_and_redirect_the_unique(@question)
+      save_and_redirect_the_unique(@question, @category_ids)
     end
   end
 
   # Part of the create method
-  def save_and_redirect_the_unique(question)
+  def save_and_redirect_the_unique(question, category_ids)
     if question.save
       session[:question_id] = question.id
-      associate_categories(question)
+      category_ids.each do |category_id|
+        Categoryquestion.create(category_id: category_id, question_id: question.id)
+      end
       redirect_to new_talking_point_path
     else
       render :new
@@ -60,15 +63,16 @@ class QuestionsController < ApplicationController
 
   # if user says their question is indeed unique, this enters it in db and redirects
   def verified
+    @category_ids = params[:category_ids]
     @question = Question.new(content: params[:verified], private: params[:private])
-    save_and_redirect_the_unique(@question)
+    save_and_redirect_the_unique(@question, @category_ids)
   end
 
   private
 
-  def associate_categories(question)
+  def associate_categories
     params[:question][:category_ids].each do |id|
-      Categoryquestion.create(category_id: id, question_id: question.id)
+      Categoryquestion.create(category_id: id)
     end
   end
 
@@ -79,7 +83,7 @@ class QuestionsController < ApplicationController
   def search_questions(content)
     @question_matches = Question.search( content,
     where: {private: false || nil},
-    min_score: 0.4,
+    min_score: 0.5,
     fields: [:content],
     highlight: true,
     operator: "or"
