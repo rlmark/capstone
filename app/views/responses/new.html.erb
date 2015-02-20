@@ -7,18 +7,15 @@
         <p class="modal-question"><%= @question.content %></p>
       </div>
 
-      <!-- This is the canvas which response to sound -->
-      <!-- <div class="canvasContainer">
-        <canvas id="canvas" width="300" height="300"></canvas>
-      </div> -->
-
       <!--Recording control bar-->
-      <input id="userMin" type="text" placeholder="MM" value="1"></input>:<input type="text" id="userSec" placeholder="SS" value="30">
-
-      <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" id="play" currentMode="play"><i class="fa fa-play fa-2x"></i></button>
-        <button type="button" class="btn btn-default" id="reset"><i class="fa fa-refresh fa-2x"></i></button>
+      <div class="controlBar">
+        <input id="userMin" type="text" placeholder="MM" value="1"></input>:<input type="text" id="userSec" placeholder="SS" value="30">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" id="play" currentMode="play"><i class="fa fa-play fa-2x"></i></button>
+          <button type="button" class="btn btn-default" id="reset"><i class="fa fa-refresh fa-2x"></i></button>
+        </div>
       </div>
+
 
       <!--This is the timer-->
       <div class="timer-holder">

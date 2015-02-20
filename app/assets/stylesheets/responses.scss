@@ -24,17 +24,45 @@
   line-height: 1.8;
 }
 
-//
+// Question
 .pageContainer h2 {
   text-align: center;
   padding-top: 20px;
   margin-bottom: 0px;
 }
 
-//Submit btn
+// Submit btn
 .pageContainer .btn {
   margin-top: 20px;
 }
+
+// entire bar
+.controlBar {
+  display: block;
+  width: 190px;
+  margin: 0 auto;
+}
+
+// time inputs
+.controlBar input{
+  display: inline-block;
+  width: 40px;
+  height: 43px;
+  border-radius: 6px;
+}
+
+// .control {
+//   display: inline-block;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   border: 1px solid coral;
+// }
+//
+// .control i {
+//   padding-top: 5px;
+//   padding-left: 7px;
+// }
 
 
 // TIMER STYLING //
