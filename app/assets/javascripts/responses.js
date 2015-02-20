@@ -28,6 +28,17 @@ $( document ).ready(function() {
     $('#play').click(function(){
       var currentMode = $(this).attr('currentMode');
       if (currentMode == "play") {
+        // get the current MM:SS, convert to seconds
+        t = getTotalTime();
+        if (t < 0) {
+          alert('Use numbers only, < 5 minutes');
+          return;
+        }
+        //update progress component
+        totaltime = t;
+        // lock out the inputs
+        $('#userMin').prop("readonly",true);
+        $('#userSec').prop("readonly",true);
         recognition.start();
         startTimer();
         $(this).attr('currentMode','pause');
@@ -50,6 +61,9 @@ $( document ).ready(function() {
       $('#play').attr('currentMode','play');
       $('#play').html(playIconHtml);
       final_transcript = "";
+      // unlock the inputs
+      $('#userMin').prop("readonly",false);
+      $('#userSec').prop("readonly",false);
     });
 
     // Fires when recognition.start is called
@@ -147,6 +161,28 @@ $( document ).ready(function() {
   var count = parseInt($('#time').text());
 
   var myCounter;
+
+  //
+  function getTotalTime(){
+    mm = $('#userMin').val();
+    if (mm == ""){
+      mm = "0";
+    }
+    ss = $('#userSec').val();
+    if (ss == ""){
+      ss = "0";
+    }
+    // validation
+    var mmNum = /^\d+$/.test(mm);
+    var ssNum = /^\d+$/.test(ss);
+    mmNum = mmNum && (parseInt(mm) < 5);
+    if (mmNum && ssNum) {
+      return parseInt(mm)*60+parseInt(ss);
+    }
+    else {
+      return -1;
+    }
+  }
 
   // increments seconds
   function startTimer() {
