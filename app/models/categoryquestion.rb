@@ -1,4 +1,4 @@
 class Categoryquestion < ActiveRecord::Base
-  belongs_to :categories
-  belongs_to :questions
+  belongs_to :category
+  belongs_to :question
 end

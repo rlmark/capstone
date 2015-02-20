@@ -64,8 +64,13 @@
     top:8px;
     left:8px;
   }
-
 }
+
+div.pie.degree {
+  margin-left: -125px;
+  left: 50%;
+}
+
 #time{
   font-size:3em;
   position:absolute;

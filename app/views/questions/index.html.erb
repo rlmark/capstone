@@ -1,2 +1,14 @@
-<h1>Duplicates?</h1>
-<%= @question_matches %>
+<h1>All questions</h1>
+<% @categories.each do |c| %>
+  <div id="<%= c.id %>">
+      <h4><%= c.name %></h4>
+      <% c.questions.each do |q| %>
+        <% if q.private == false || q.private == nil %>
+          <p><%= q.content %></p>
+        <% end %>
+      <% end %>
+  </div>
+<% end %>
+<% @questions.each do |question| %>
+  <%= question.content %>
+<% end %>

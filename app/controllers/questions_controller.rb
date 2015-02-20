@@ -1,13 +1,15 @@
 #require 'byebug'
 class QuestionsController < ApplicationController
   def index
-    @question = Question.find(params[:id])
-    search_questions(@question.content)
+    @categories = Category.all
+    @questions = [] #Question.all
+    @categoryquestion = Categoryquestion.new
   end
 
   def new
     @question = Question.new
     @talking_point = TalkingPoint.new
+    @categories = Category.all
   end
 
   def create
@@ -25,6 +27,7 @@ class QuestionsController < ApplicationController
   def save_and_redirect_the_unique(question)
     if question.save
       session[:question_id] = question.id
+      associate_categories(question)
       redirect_to new_talking_point_path
     else
       render :new
@@ -62,6 +65,12 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def associate_categories(question)
+    params[:question][:category_ids].each do |id|
+      Categoryquestion.create(category_id: id, question_id: question.id)
+    end
+  end
 
   def question_params
     params.require(:question).permit(:content, :private)

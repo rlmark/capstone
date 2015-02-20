@@ -1,5 +1,5 @@
 <h1>Add an Interview Question</h1>
-<%= form_for @question, :html => {:multipart => true} do |f| %>
+<%= form_for @question, :html => {:multipart => true}, class: 'form-horizontal' do |f| %>
 
   <div class="form-group">
     <%= f.label :content, "What is your practice question?" %>
@@ -14,5 +14,14 @@
     <%= f.label :private_false, "Public" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :categories %>
+      <% @categories.each do |category| %><br>
+        <%= category.name %>
+        <%= check_box_tag "question[category_ids][]", category.id, @question.categories.include?(category) %>
+      <% end %>
+  </div>
+
   <%= f.submit "Submit", class: "btn btn-default" %>
+
 <% end %>
