@@ -59,8 +59,8 @@
 
 
 .pie{
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     display: block;
     position: relative;
     border-radius: 50%;
@@ -71,8 +71,8 @@
   .block{
     position:absolute;
     background:#fff;
-    width:230px;
-    height:230px;
+    width:200px;
+    height:200px;
     display:block;
     border-radius:50%;
     top:8px;
@@ -81,7 +81,7 @@
 }
 
 div.pie.degree {
-  margin-left: -125px;
+  margin-left: -115px;
   left: 50%;
 }
 
