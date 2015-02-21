@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # Users Routes
+  resources :users
+
   # Results controller view
   get 'results/show', to: 'results#show', as: :results
 
