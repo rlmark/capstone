@@ -46,7 +46,7 @@
   <!-- This is the actual transcript -->
   <div id="recording">
     <%= form_for @response do |f| %>
-      <%= f.text_area :transcript, id: "results", value: "Your transcript will go here" %>
+      <%= f.text_area :transcript, id: "results", placeholder: "Your transcript will go here." %>
       <%= render "shared/error_messages", obj: @response, col: :transcript %>
       <%= f.submit "Submit", id: "submit", class: "btn btn-default" %>
     <% end %>

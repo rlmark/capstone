@@ -98,7 +98,7 @@ input.simple-form {
   background-color: coral;
   border: none;
 }
-.btn:hover {
+.btn:hover, .btn:active, .btn:focus {
   border-radius: 20px;
   background-color: coral;
   color: white;
