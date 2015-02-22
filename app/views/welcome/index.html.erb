@@ -19,7 +19,7 @@
   </div>
   <div class="col-sm-6 sm-card" id="card2">
     <div id="inner2">
-
+      <%= link_to "New Question", new_question_path %>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
 <div class="row" id="third-block">
   <div class="col-sm-6 sm-card" id="card3">
     <div id="inner3">
-
+      <%= link_to "Interview Mode", new_talking_point_path(random: true) %>
     </div>
     <%#= link_to "ADD A QUESTION" %>
   </div>
@@ -36,7 +36,7 @@
       <h1>- Processing -</h1>
       <p>
         Behind the scenes, Speechable works to <br>
-        tell you if you hit your marks. 
+        tell you if you hit your marks.
       </p>
     </div>
   </div>

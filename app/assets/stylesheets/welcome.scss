@@ -70,15 +70,6 @@ textarea.big-form {
   padding: 5px 10px;
 }
 
-// Second block of color
-#second-block {
-  background-color: #F1C5B8;
-}
-
-#second-block h1 {
-  text-align: center;
-}
-
 // Card formatting
 
 .sm-card {
@@ -97,6 +88,7 @@ textarea.big-form {
   padding: 30px 0;
   color: #615C5B
 }
+
 #card2 {
   background-color: coral;
   background: linear-gradient(
@@ -105,9 +97,6 @@ textarea.big-form {
   ), image-url("computer.jpeg");  color: white;
   background-size: cover;
   background-repeat: no-repeat;
-}
-#inner2 {
-
 }
 
 #card3 {
@@ -119,9 +108,22 @@ textarea.big-form {
   background-size: cover;
   background-repeat: no-repeat;
 }
-#inner3 {
 
+#inner3 a, #inner2 a {
+  color: white;
+  font-size: 1.7em;
+  border: 2px solid white;
+  padding: 15px;
+  margin:0 auto;
+  margin-top: 60px;
+  display: block;
+  width: 220px;
+  text-align: center;
 }
+#inner3 a:hover, #inner2 a:hover {
+  text-decoration: none;
+}
+
 
 #card4 {
   background-color: #615C5B;
