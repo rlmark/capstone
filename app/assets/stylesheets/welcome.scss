@@ -72,10 +72,65 @@ textarea.big-form {
 
 // Second block of color
 #second-block {
-  min-height: 500px;
   background-color: #F1C5B8;
 }
 
 #second-block h1 {
+  text-align: center;
+}
+
+// Card formatting
+
+.sm-card {
+  height: 250px;
+  padding: 30px;
+}
+
+#card1 {
+  background-color: white;
+  text-align: center;
+}
+#inner1 {
+  border-bottom: 2px solid #615C5B;
+  border-top: 2px solid #615C5B;
+  height: 100%;
+  padding: 30px 0;
+  color: #615C5B
+}
+#card2 {
+  background-color: coral;
+  background: linear-gradient(
+  rgba(241,197,184, 0.9),
+  rgba(241,197,184, 0.9)
+  ), image-url("computer.jpeg");  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#inner2 {
+
+}
+
+#card3 {
+  background-color: coral;
+  background: linear-gradient(
+  rgba(255,127,80, 0.8),
+  rgba(255,127,80, 0.8)
+  ), image-url("bag-and-hands-sm.jpg");  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#inner3 {
+
+}
+
+#card4 {
+  background-color: #615C5B;
+}
+#inner4 {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  height: 100%;
+  color: white;
+  padding: 30px 0;
   text-align: center;
 }
