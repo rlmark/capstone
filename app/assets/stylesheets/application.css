@@ -19,6 +19,10 @@
 /*Header Styling*/
 /****************/
 
+#logo {
+  color: coral;
+}
+
 header {
   background-color: #3d3a39;
 }
@@ -82,4 +86,20 @@ input.simple-form {
 .error-message {
   color: #920048;
   padding-top: 5px;
+}
+
+.btn {
+  border-radius: 0px;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.5s ease;
+  color: white;
+  background-color: coral;
+  border: none;
+}
+.btn:hover {
+  border-radius: 20px;
+  background-color: coral;
+  color: white;
 }

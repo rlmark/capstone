@@ -102,6 +102,9 @@ div.pie.degree {
 
 //MODAL STYLING//
 // *********** //
+.in {
+background: rgba(255,127,80, 0.8);
+}
 
 // question
 .modal-question {
@@ -113,7 +116,7 @@ div.pie.degree {
 #on-recording {
   width: 80%;
   min-height: 200px;
-  margin: 0 auto 20px auto;
+  margin: -20px auto 20px auto;
   padding: 5px;
   display: block;
   background-color: #DEDEDE;
