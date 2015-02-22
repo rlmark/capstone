@@ -115,13 +115,18 @@ textarea.big-form {
   border: 2px solid white;
   padding: 15px;
   margin:0 auto;
-  margin-top: 60px;
+  margin-top: 62px;
   display: block;
   width: 220px;
   text-align: center;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.5s ease;
 }
 #inner3 a:hover, #inner2 a:hover {
   text-decoration: none;
+  border-radius: 35px;
 }
 
 
