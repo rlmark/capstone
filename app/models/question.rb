@@ -10,6 +10,8 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :categories
 
   validates :content, presence: true, length: {minimum: 3}
+  # validates :categoryquestions, presence: true
+  # validates :categories, presence: true
 
   searchkick highlight: [:content]
 

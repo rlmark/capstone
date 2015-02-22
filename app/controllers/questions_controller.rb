@@ -15,6 +15,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @category_ids = params[:question][:category_ids]
+    if @category_ids == nil
+      @category_ids = []
+      @category_ids << Category.find_by(name: "General").id
+    end
     search_questions(@question.content)
     # @question_matches is an instance var exposed by search_questions function below
     if @question_matches.results.length >= 1
@@ -34,6 +38,7 @@ class QuestionsController < ApplicationController
       redirect_to new_talking_point_path
     else
       render :new
+      @categories = Category.all
     end
   end
 
