@@ -3,7 +3,9 @@
   <h2>Interview Analysis</h2>
   <h3>Your final transcript:</h3>
   <%= @response.transcript %>
+</div>
 
+<div class="pageContainer">
   <h3>Did you hit your talking points?</h3>
   <% @results.each_with_index do |result, i| %><!-- displays results of search analysis-->
 
@@ -23,8 +25,10 @@
     <hr>
 
   <% end %><!-- end of each talking point result -->
+</div>
 
-  <h3><%= @sum %> Filler <%="word".pluralize(@sum)%> detected</h3> <!--Filler word -->
+<div class="pageContainer">
+  <h3><span id="total"><%= @sum %></span> Filler <%="word".pluralize(@sum)%> detected</h3> <!--Filler word -->
 
   <% @count.keys.each_with_index do |filler_word, i| %>
     <% if @count.values[i] == 0 %>
