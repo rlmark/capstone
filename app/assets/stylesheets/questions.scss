@@ -25,14 +25,7 @@
 }
 
 @media (max-width: 800px) {
-
-  .categories {
-    float: none;
-    margin-top: 20px;
-    width: 100%;
-  }
-
-  .left {
+  .categories, .left {
     float: none;
     width: 100%;
   }
