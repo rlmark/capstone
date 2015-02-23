@@ -5,12 +5,12 @@
         <h4><%= c.name %></h4>
         <% c.questions.each do |q| %>
           <% if q.private == false || q.private == nil %>
-            <p><%= q.content %></p>
+            <p><%= link_to q.content, new_talking_point_path(question_selection: q.id) %></p>
           <% end %>
         <% end %>
     </div>
   <% end %>
   <% @questions.each do |question| %>
-    <%= question.content %>
+    <%= link_to question.content, new_talking_point_path(question_selection: question.id) %>
   <% end %>
 </div>

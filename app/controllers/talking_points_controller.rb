@@ -11,6 +11,9 @@ not exists(select 1 from categoryquestions where categoryquestions.question_id =
 or exists(select 1 from categoryquestions where categoryquestions.question_id = questions.id and categoryquestions.category_id = 2)").where(private: false)
       @question = questions.sample
       session[:question_id] = @question.id
+    elsif params[:question_selection]
+      session[:question_id] = params[:question_selection]
+      @question = Question.find(session[:question_id])
     else
       @question = Question.find(session[:question_id])
     end

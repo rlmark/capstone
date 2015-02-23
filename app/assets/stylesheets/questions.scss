@@ -7,7 +7,10 @@
 
 .suggestion-list li {
   list-style: none;
-  padding-bottom: 10px
+  padding-bottom: 10px;
+}
+.suggestion-list li a {
+  color: coral;
 }
 
 .categories {
