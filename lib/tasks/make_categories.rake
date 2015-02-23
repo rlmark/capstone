@@ -1,5 +1,5 @@
 task :make_categories do
-  
+
   fields = "
   General
   Medical / Health
@@ -22,9 +22,7 @@ task :make_categories do
   Logistics / Transportation
   Manufacturing / Production / Operations
   Marketing / Product
-  Other
   Project / Program Management
-  Quality Assurance / Safety
   Sales / Retail / Business Development
   Security / Protective Services"
 
