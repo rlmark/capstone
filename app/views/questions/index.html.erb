@@ -1,16 +1,24 @@
 <div class="pageContainer">
   <h1>All questions</h1>
-  <% @categories.each do |c| %>
-    <div id="<%= c.id %>">
-        <h4><%= c.name %></h4>
-        <% c.questions.each do |q| %>
-          <% if q.private == false || q.private == nil %>
-            <p><%= link_to q.content, new_talking_point_path(question_selection: q.id) %></p>
+  <div class="filtering">
+    <% @categories.each do |c| %>
+      <div id="<%= c.id %>" class="header-question">
+        <h4 id="header<%= c.id %>"><%= c.name %></h4>
+        <div class="question-list" id="qlist<%=c.id%>">
+          <% c.questions.each do |q| %>
+            <% if q.private == false || q.private == nil %>
+              <p><%= link_to q.content, new_talking_point_path(question_selection: q.id) %></p>
+            <% end %>
           <% end %>
-        <% end %>
-    </div>
-  <% end %>
-  <% @questions.each do |question| %>
-    <%= link_to question.content, new_talking_point_path(question_selection: question.id) %>
-  <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<script charset="utf-8">
+  $(".header-question").click(function(e){
+    console.log("HI")
+    $(this).children(".question-list").fadeToggle();
+  });
+</script>

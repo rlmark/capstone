@@ -9,3 +9,15 @@
 #addMore {
   margin-top: 10px;
 }
+
+.filtering p a {
+  color: #615C5B;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: 0.5s ease;
+}
+.filtering p a:hover {
+  color: coral;
+  text-decoration: none;
+}
