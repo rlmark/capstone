@@ -9,3 +9,28 @@
   list-style: none;
   padding-bottom: 10px
 }
+
+.categories {
+  float: left;
+  width: 50%
+}
+
+.left {
+  float: right;
+  width: 50%;
+}
+
+#float-clear {
+  clear:both;
+}
+
+@media (max-width: 800px) {
+
+  .categories {
+    float: none;
+  }
+
+  .left {
+    float: none;
+  }
+}

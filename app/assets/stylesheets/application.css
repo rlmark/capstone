@@ -60,6 +60,21 @@ body {
   font-family: Futura, Helvetica, Arial, sans-serif;
 }
 
+.container-fluid {
+  background-color: #DEDEDE;
+  min-height: 100vh;
+}
+
+.pageContainer {
+  width: 70%;
+  min-width: 300px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .simple-form {
   border: 0;
   box-shadow: none;
