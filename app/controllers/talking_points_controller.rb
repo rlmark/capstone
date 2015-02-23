@@ -8,7 +8,7 @@ class TalkingPointsController < ApplicationController
       # gathering a random question for interview mode where public is enabled
       questions = Question.where("
 not exists(select 1 from categoryquestions where categoryquestions.question_id = questions.id)
-or exists(select 1 from categoryquestions where categoryquestions.question_id = questions.id and categoryquestions.category_id = 51)").where(private: false)
+or exists(select 1 from categoryquestions where categoryquestions.question_id = questions.id and categoryquestions.category_id = 2)").where(private: false)
       @question = questions.sample
       session[:question_id] = @question.id
     else

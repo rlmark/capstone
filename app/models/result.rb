@@ -6,8 +6,8 @@ class Result < ActiveRecord::Base
       #operator: "or", ## This widens the search too much
       where: {id: response.id},
       fields: [:transcript],
-      fuzziness: 2, # I have no clue what this is doing.
-      misspellings: true,
+      #fuzziness: 2, # I have no clue what this is doing.
+      misspellings: false,
       highlight: true,
       )
     end
