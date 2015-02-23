@@ -9,14 +9,14 @@
 </head>
 <body>
 <header>
-  <h1>Speech<span id="logo">able<span></h1>
+  <%= link_to "<h1>Speech<span id='logo'>able<span></h1>".html_safe, root_path %>
   <ul>
-    <li><%= link_to "New Recording", new_response_path %></li>
-    <li><%= link_to "Splash page", root_path %></li>
+    <!-- <li><%#= link_to "New Recording", new_response_path %></li> -->
     <li><%= link_to "New Question", new_question_path %></li>
-    <li><%= link_to "Results", results_path %></li>
+    <!-- <li><%#= link_to "Results", results_path %></li> -->
     <li><%= link_to "Interview Mode", new_talking_point_path(random: true) %></li>
     <li><%= link_to "All Questions", questions_path %></li>
+    <li><%= link_to "Home", root_path %></li>
   </ul>
 </header>
 
